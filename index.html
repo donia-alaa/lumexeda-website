@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lumexeda | Studio &amp; Media</title>
-<meta name="description" content="Lumexeda Studio & Media — a full-service creative studio. Production, brand identity, social media management, content strategy, reels and analytics. One partner. All solutions.">
+<meta name="description" content="Lumexeda Studio & Media — a full-service creative studio. Production, brand identity, social media management, content strategy, reels, websites and analytics. One partner. All solutions.">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +25,13 @@ a{color:inherit;text-decoration:none}
 .condensed{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.01em}
 .spaced{font-family:'Oswald',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.42em}
 .kicker{font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.42em;font-size:12px;color:var(--blue);display:flex;align-items:center;gap:14px}
-.kicker::before{content:"";width:34px;height:1px;background:var(--blue)}
+.kicker::before{content:"";width:34px;height:1px;background:var(--blue);transform-origin:left;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
 .kicker.on-dark{color:#9FB0FF}.kicker.on-dark::before{background:#9FB0FF}
 .star{color:var(--blue);font-family:'Archivo',sans-serif}
 h2.sec{font-size:clamp(44px,6.4vw,92px);margin:18px 0 0}
 h2.sec .b{color:var(--navy)}
+.on-dark h2.sec{color:var(--paper)}
+.on-dark h2.sec .b{color:#7A93FF}
 .dots{display:flex;gap:7px}
 .dots i{width:5px;height:5px;border-radius:50%;background:currentColor;display:block}
 /* ---------- NAV ---------- */
@@ -39,10 +41,12 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(20,20,25,.82);bac
 .wordmark .b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .wordmark .x{color:#fff}
 .wordmark sup{font-size:12px;color:var(--blue-bright);margin-left:3px;margin-top:-2px}
-.nav-links{display:flex;gap:30px;align-items:center}
-.nav-links a{font-family:'Oswald',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,242,237,.78);transition:color .2s}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-family:'Oswald',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,242,237,.78);transition:color .2s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:1px;background:var(--blue-bright);transform:scaleX(0);transform-origin:left;transition:transform .25s}
 .nav-links a:hover{color:#fff}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:13px 26px;border-radius:999px;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;border:0}
+.nav-links a:hover::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:13px 26px;border-radius:999px;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;cursor:pointer;border:0}
 .btn-navy{background:var(--navy);color:var(--paper)}
 .btn-navy:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 12px 30px rgba(46,69,184,.35)}
 .btn-ghost{border:1px solid rgba(244,242,237,.35);color:var(--paper)}
@@ -55,8 +59,9 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(20,20,25,.82);bac
 .mobile-menu.open{display:block}
 /* ---------- HERO ---------- */
 .hero{position:relative;background:var(--ink);color:var(--paper);min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:120px 0 90px}
-.hero::before{content:"";position:absolute;width:900px;height:900px;right:-260px;top:-260px;background:radial-gradient(circle,rgba(46,69,184,.32),transparent 62%);pointer-events:none}
-.hero::after{content:"";position:absolute;width:700px;height:700px;left:-280px;bottom:-320px;background:radial-gradient(circle,rgba(27,37,101,.5),transparent 60%);pointer-events:none}
+.hero::before{content:"";position:absolute;width:900px;height:900px;right:-260px;top:-260px;background:radial-gradient(circle,rgba(46,69,184,.32),transparent 62%);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;width:700px;height:700px;left:-280px;bottom:-320px;background:radial-gradient(circle,rgba(27,37,101,.5),transparent 60%);pointer-events:none;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.06)}}
 .hero-grid-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(244,242,237,.13) 1px,transparent 1px);background-size:26px 26px;mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 0%,transparent 70%)}
 .hero-in{position:relative;z-index:2}
 .hero .dots{color:rgba(244,242,237,.6);margin-bottom:44px}
@@ -64,104 +69,159 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(20,20,25,.82);bac
 .hero-logo{font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(58px,11vw,150px);line-height:.98;letter-spacing:-.01em;position:relative;display:inline-block}
 .hero-logo .b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-logo .x{color:#fff}
-.hero-logo .ast{position:absolute;top:-.28em;left:56%;font-size:.34em;color:var(--blue-bright)}
+.hero-logo .ast{position:absolute;top:-.28em;left:56%;font-size:.34em;color:var(--blue-bright);display:inline-block;animation:spin 16s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 .hero-sub{font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.58em;text-transform:uppercase;font-size:clamp(13px,2vw,19px);color:rgba(244,242,237,.85);margin-top:22px;display:flex;align-items:center;gap:22px}
 .hero-sub::after{content:"";flex:0 0 120px;height:1px;background:rgba(244,242,237,.4)}
 .hero-copy{max-width:560px;margin-top:34px;color:rgba(244,242,237,.72);font-size:17px}
 .hero-cta{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+.js .rise{opacity:0;transform:translateY(34px);animation:rise .9s cubic-bezier(.2,.6,.2,1) forwards}
+.js .rise.d1{animation-delay:.08s}.js .rise.d2{animation-delay:.2s}.js .rise.d3{animation-delay:.34s}
+.js .rise.d4{animation-delay:.48s}.js .rise.d5{animation-delay:.62s}.js .rise.d6{animation-delay:.78s}
+@keyframes rise{to{opacity:1;transform:none}}
 /* marquee */
 .marquee{position:relative;z-index:2;margin-top:84px;border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);overflow:hidden;padding:16px 0}
 .marquee-track{display:flex;gap:44px;white-space:nowrap;animation:mq 30s linear infinite;width:max-content}
 .marquee-track span{font-family:'Oswald',sans-serif;font-weight:400;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,237,.7);display:flex;align-items:center;gap:44px}
 .marquee-track .star{color:var(--blue-bright);font-size:15px}
 @keyframes mq{to{transform:translateX(-50%)}}
-/* torn divider */
-.torn{display:block;width:100%;height:34px;margin-bottom:-1px}
 /* ---------- SECTIONS ---------- */
-section{padding:110px 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:60px;flex-wrap:wrap}
+section{padding:96px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:54px;flex-wrap:wrap}
 .sec-note{max-width:360px;color:rgba(20,20,25,.62);font-size:15px}
 .on-dark .sec-note{color:rgba(244,242,237,.62)}
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
 .about-copy p{color:rgba(20,20,25,.72);font-size:17px;margin-top:26px;max-width:520px}
 .about-copy .claim{font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:13px;color:var(--navy);margin-top:36px;display:flex;align-items:center;gap:14px}
 .about-copy .claim .box{width:34px;height:34px;background:var(--navy);color:var(--paper);display:grid;place-items:center;font-size:15px}
 .about-visual{position:relative}
-.about-visual img{border-radius:18px;box-shadow:0 30px 70px rgba(20,20,25,.18)}
+.about-visual img{border-radius:18px;box-shadow:0 30px 70px rgba(20,20,25,.18);transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+.about-visual:hover img{transform:translateY(-6px) rotate(-.6deg)}
 .about-visual .frame{position:absolute;inset:-18px 18px 18px -18px;border:1px solid var(--navy);border-radius:20px;z-index:-1}
+.about-visual .badge{position:absolute;right:-14px;top:-14px;background:var(--navy);color:var(--paper);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:10px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(27,37,101,.4)}
+/* TECH / DIGITAL PRODUCTS */
+.tech{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.tech::before{content:"";position:absolute;width:760px;height:760px;left:-300px;top:-300px;background:radial-gradient(circle,rgba(46,69,184,.28),transparent 62%);pointer-events:none}
+.tech .wrap{position:relative;z-index:2}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.tcard{background:var(--ink-2);border:1px solid var(--line-light);border-radius:18px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.6,.2,1),border-color .3s,box-shadow .35s;display:flex;flex-direction:column}
+.tcard:hover{transform:translateY(-7px);border-color:rgba(122,147,255,.55);box-shadow:0 26px 60px rgba(0,0,0,.45)}
+.tshot{position:relative;overflow:hidden;aspect-ratio:16/9;background:#0c0c10}
+.tshot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .7s cubic-bezier(.2,.6,.2,1)}
+.tcard:hover .tshot img{transform:scale(1.05)}
+.tbar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:7px;padding:10px 14px;background:linear-gradient(rgba(12,12,16,.85),rgba(12,12,16,0));z-index:2}
+.tbar i{width:8px;height:8px;border-radius:50%;background:rgba(244,242,237,.35)}
+.tbar .url{margin-left:8px;font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:.14em;color:rgba(244,242,237,.65);background:rgba(244,242,237,.09);padding:3px 12px;border-radius:999px}
+.tbody{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tbody .tlabel{font-family:'Oswald',sans-serif;font-weight:400;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7A93FF}
+.tbody h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:22px;letter-spacing:.02em;color:var(--paper)}
+.tbody p{font-size:14px;color:rgba(244,242,237,.65);flex:1}
+.ttags{display:flex;gap:8px;flex-wrap:wrap}
+.ttags span{font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,242,237,.75);border:1px solid var(--line-light);padding:4px 11px;border-radius:999px}
+.tlinks{display:flex;gap:18px;margin-top:8px}
+.tlinks a{font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#9FB0FF;display:flex;align-items:center;gap:7px;transition:color .2s,gap .2s}
+.tlinks a:hover{color:#fff;gap:11px}
 /* SERVICES */
 .services{background:var(--paper-2)}
 .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.svc{background:var(--paper-2);padding:36px 28px;transition:background .25s}
-.svc:hover{background:var(--paper)}
+.svc{background:var(--paper-2);padding:34px 26px;transition:background .25s,transform .25s}
+.svc:hover{background:var(--paper);transform:translateY(-4px)}
 .svc .num{font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.3em;color:var(--blue)}
-.svc svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:20px 0 18px}
+.svc svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:18px 0 16px;transition:transform .3s}
+.svc:hover svg{transform:translateY(-3px) rotate(-4deg)}
 .svc h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:17px;letter-spacing:.02em;margin-bottom:10px}
 .svc p{font-size:13.5px;color:rgba(20,20,25,.62);line-height:1.55}
 /* GOALS BAND */
-.goals{background:var(--navy);color:var(--paper);padding:64px 0}
+.goals{background:var(--navy);color:var(--paper);padding:60px 0}
 .goals-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:26px;text-align:center}
 .goal svg{width:30px;height:30px;stroke:#9FB0FF;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 14px}
 .goal p{font-family:'Oswald',sans-serif;font-weight:300;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;color:rgba(244,242,237,.85)}
-/* WORK */
-.client{margin-bottom:74px}
-.client-head{display:flex;align-items:baseline;gap:22px;margin-bottom:26px;flex-wrap:wrap}
+/* WORK — rails */
+.client{margin-bottom:64px}
+.client:last-child{margin-bottom:0}
+.client-head{display:flex;align-items:baseline;gap:22px;margin-bottom:20px;flex-wrap:wrap}
 .client-head .idx{font-family:'Oswald',sans-serif;font-weight:300;font-size:13px;letter-spacing:.3em;color:var(--blue)}
 .client-head h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,3.4vw,40px)}
 .client-head .tag{font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:rgba(20,20,25,.55)}
-.client-desc{max-width:640px;color:rgba(20,20,25,.68);font-size:15px;margin-bottom:26px}
-.work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-.wcard{position:relative;border-radius:14px;overflow:hidden;background:var(--paper-2)}
-.wcard img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
-.wcard.contain img{object-fit:contain;background:#101014}
-.wcard:hover img{transform:scale(1.045)}
-.wcard .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;background:linear-gradient(transparent,rgba(20,20,25,.82));color:var(--paper);font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:0;transition:opacity .3s}
-.wcard:hover .cap{opacity:1}
-.span6{grid-column:span 6}.span5{grid-column:span 5}.span7{grid-column:span 7}.span4{grid-column:span 4}.span8{grid-column:span 8}.span3{grid-column:span 3}.span2{grid-column:span 2}.span12{grid-column:span 12}
-.r43{aspect-ratio:4/3}.r45{aspect-ratio:4/5}.r11{aspect-ratio:1/1}.r34{aspect-ratio:3/4}.r169{aspect-ratio:16/9}.r21{aspect-ratio:2/1}
-.wcard video{width:100%;height:100%;object-fit:cover;display:block}
-.subhead{font-family:'Oswald',sans-serif;font-weight:400;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);margin:44px 0 18px;display:flex;align-items:center;gap:14px}
+.client-desc{max-width:640px;color:rgba(20,20,25,.68);font-size:15px;margin-bottom:24px}
+.rail-wrap{position:relative}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 6px 18px;scrollbar-width:none;-ms-overflow-style:none}
+.rail::-webkit-scrollbar{display:none}
+.rcard{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:14px;overflow:hidden;background:var(--paper-2)}
+.rcard img,.rcard video{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+.rcard.contain img{object-fit:contain;background:#101014}
+.rcard.contain-light img{object-fit:contain;background:#EFEBE3}
+.rcard:hover img{transform:scale(1.045)}
+.rcard .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;background:linear-gradient(transparent,rgba(20,20,25,.82));color:var(--paper);font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.rcard:hover .cap{opacity:1}
+.w-p{flex-basis:clamp(230px,24vw,310px);aspect-ratio:4/5}
+.w-s{flex-basis:clamp(250px,26vw,330px);aspect-ratio:1/1}
+.w-w{flex-basis:clamp(420px,44vw,560px);aspect-ratio:16/9}
+.w-b{flex-basis:clamp(470px,52vw,640px);aspect-ratio:11/10}
+.rail-nav{position:absolute;top:-64px;right:0;display:flex;gap:10px}
+.rnav{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s,transform .2s}
+.rnav:hover{background:var(--navy);border-color:var(--navy);transform:translateY(-2px)}
+.rnav svg{width:15px;height:15px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rnav:hover svg{stroke:var(--paper)}
+.rprog{height:2px;background:var(--line);border-radius:2px;margin-top:2px;overflow:hidden}
+.rprog i{display:block;height:100%;width:12%;background:var(--grad);border-radius:2px;transition:width .15s linear}
+.subhead{font-family:'Oswald',sans-serif;font-weight:400;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);margin:40px 0 18px;display:flex;align-items:center;gap:14px}
 .subhead::after{content:"";flex:1;height:1px;background:var(--line)}
-.placeholder-card{border:1.5px dashed rgba(27,37,101,.4);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:60px 30px;text-align:center;background:rgba(27,37,101,.04)}
-.placeholder-card .star{font-size:26px}
-.placeholder-card p{font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.26em;text-transform:uppercase;font-size:12.5px;color:var(--navy)}
-.placeholder-card small{font-size:13px;color:rgba(20,20,25,.55);max-width:340px}
 /* REELS */
-.reels{background:var(--ink);color:var(--paper)}
+.reels{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.reels::before{content:"";position:absolute;width:700px;height:700px;right:-260px;bottom:-300px;background:radial-gradient(circle,rgba(61,91,255,.22),transparent 62%);pointer-events:none}
+.reels .wrap{position:relative;z-index:2}
 .reel-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
 .reel{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:9/16;background:var(--ink-2);display:block}
 .reel img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.6,.2,1),opacity .3s}
-.reel:hover img{transform:scale(1.06);opacity:.75}
+.reel:hover img{transform:scale(1.08) rotate(.5deg);opacity:.75}
 .reel .play{position:absolute;inset:0;display:grid;place-items:center}
 .reel .play i{width:46px;height:46px;border-radius:50%;background:rgba(20,20,25,.55);border:1px solid rgba(244,242,237,.5);display:grid;place-items:center;opacity:0;transform:scale(.8);transition:.3s}
 .reel:hover .play i{opacity:1;transform:scale(1)}
 .reel .play svg{width:16px;height:16px;fill:var(--paper);margin-left:2px}
 .reel .rl{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;background:linear-gradient(transparent,rgba(20,20,25,.85));font-family:'Oswald',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,237,.92);line-height:1.5}
 /* RESULTS */
+.organic{margin-top:44px;background:var(--navy);color:var(--paper);border-radius:18px;padding:38px 40px;display:flex;align-items:center;gap:34px;flex-wrap:wrap;position:relative;overflow:hidden}
+.organic::after{content:"✳";position:absolute;right:-24px;top:-52px;font-size:210px;color:rgba(122,147,255,.16);font-family:'Archivo',sans-serif;line-height:1}
+.organic .big{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(26px,3.4vw,42px);line-height:1.05}
+.organic .big span{color:#7A93FF}
+.organic p{max-width:460px;color:rgba(244,242,237,.78);font-size:15px}
 .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
-.results-grid img{border-radius:14px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(20,20,25,.1)}
-.results-copy{margin-top:34px;display:flex;gap:40px;flex-wrap:wrap}
-.stat .n{font-family:'Anton',sans-serif;font-size:44px;color:var(--navy)}
-.stat .l{font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:rgba(20,20,25,.6)}
+.results-grid img{border-radius:14px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(20,20,25,.1);transition:transform .4s cubic-bezier(.2,.6,.2,1)}
+.results-grid img:hover{transform:translateY(-5px)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:46px}
+.stat{text-align:left;border-left:2px solid var(--navy);padding-left:18px}
+.stat .n{font-family:'Anton',sans-serif;font-size:clamp(30px,3.6vw,46px);color:var(--navy);line-height:1.05}
+.stat .n .u{color:var(--blue-bright)}
+.stat .l{font-family:'Oswald',sans-serif;font-weight:300;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(20,20,25,.6);margin-top:8px;line-height:1.6}
 /* STUDIO */
 .studio-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:10px}
-.studio-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:46px}
+.wcard{position:relative;border-radius:14px;overflow:hidden;background:var(--paper-2)}
+.wcard img,.wcard video{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+.wcard:hover img{transform:scale(1.045)}
+.wcard .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;background:linear-gradient(transparent,rgba(20,20,25,.82));color:var(--paper);font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.wcard:hover .cap{opacity:1}
+.span4{grid-column:span 4}.span6{grid-column:span 6}.span3{grid-column:span 3}
+.r34{aspect-ratio:3/4}.r169{aspect-ratio:16/9}
+.studio-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:42px}
 .studio-intro p{color:rgba(20,20,25,.68);font-size:16px;max-width:480px}
-.studio-feats{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px}
+.studio-feats{display:flex;gap:26px;flex-wrap:wrap;margin-top:24px}
 .feat{font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:10px}
 .feat::before{content:"✳";color:var(--blue)}
+.studio-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);border-bottom:1px solid var(--blue);padding-bottom:4px;transition:gap .2s}
+.studio-link:hover{gap:13px}
 /* TESTIMONIALS */
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.testi{border:1px solid var(--line);border-radius:16px;padding:34px 30px;background:var(--paper)}
-.testi .q{font-size:15px;color:rgba(20,20,25,.75);font-style:italic;min-height:74px}
-.testi .who{margin-top:22px;font-family:'Oswald',sans-serif;font-weight:400;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--navy)}
-.testi.soon{border-style:dashed;background:transparent;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}
-.testi.soon .star{font-size:22px}
-.testi.soon p{font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.24em;text-transform:uppercase;font-size:12px;color:var(--navy)}
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.testi{position:relative;border:1px solid var(--line);border-radius:16px;padding:36px 32px;background:var(--paper);transition:transform .3s,box-shadow .3s}
+.testi:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(20,20,25,.1)}
+.testi .qm{position:absolute;top:18px;right:26px;font-family:'Anton',sans-serif;font-size:64px;color:rgba(46,69,184,.14);line-height:1}
+.testi .q{font-size:15.5px;color:rgba(20,20,25,.8);line-height:1.7}
+.testi .who{margin-top:22px;font-family:'Oswald',sans-serif;font-weight:400;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:10px}
+.testi .who::before{content:"✳";color:var(--blue)}
 /* CONTACT */
 .contact{background:var(--ink);color:var(--paper);text-align:center;position:relative;overflow:hidden}
-.contact::before{content:"";position:absolute;width:800px;height:800px;left:50%;top:-420px;transform:translateX(-50%);background:radial-gradient(circle,rgba(46,69,184,.3),transparent 62%);pointer-events:none}
+.contact::before{content:"";position:absolute;width:800px;height:800px;left:50%;top:-420px;transform:translateX(-50%);background:radial-gradient(circle,rgba(46,69,184,.3),transparent 62%);pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
 .contact .wrap{position:relative;z-index:2}
 .contact h2{font-size:clamp(46px,7vw,104px)}
 .contact h2 .b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -178,30 +238,47 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
 .foot small{font-size:12.5px;letter-spacing:.06em}
 .foot .fl{display:flex;gap:22px;font-family:'Oswald',sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase}
 .foot .fl a:hover{color:#fff}
-/* fade-in */
-.js .fi{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.6,.2,1)}
+/* reveal */
+.js .fi{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.6,.2,1)}
 .js .fi.vis{opacity:1;transform:none}
+.js .stg>*{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.6,.2,1)}
+.js .stg.vis>*{opacity:1;transform:none}
+.js .stg.vis>*:nth-child(2){transition-delay:.08s}.js .stg.vis>*:nth-child(3){transition-delay:.16s}
+.js .stg.vis>*:nth-child(4){transition-delay:.24s}.js .stg.vis>*:nth-child(5){transition-delay:.32s}
+.js .stg.vis>*:nth-child(6){transition-delay:.4s}.js .stg.vis>*:nth-child(7){transition-delay:.48s}
+.js .stg.vis>*:nth-child(8){transition-delay:.56s}.js .stg.vis>*:nth-child(9){transition-delay:.64s}
+.js .stg.vis>*:nth-child(10){transition-delay:.72s}.js .stg.vis>*:nth-child(11){transition-delay:.8s}
+.js .stg.vis>*:nth-child(12){transition-delay:.88s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:1020px){
   .svc-grid{grid-template-columns:repeat(2,1fr)}
   .goals-grid{grid-template-columns:repeat(3,1fr);row-gap:36px}
   .reel-grid{grid-template-columns:repeat(4,1fr)}
   .about-grid,.studio-intro{grid-template-columns:1fr;gap:44px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:760px){
   .wrap{padding:0 20px}
-  section{padding:76px 0}
+  section{padding:72px 0}
   .nav-links,.btn-nav{display:none}
   .burger{display:flex}
   .svc-grid{grid-template-columns:1fr}
   .goals-grid{grid-template-columns:repeat(2,1fr)}
   .reel-grid{grid-template-columns:repeat(3,1fr);gap:10px}
-  .results-grid,.testi-grid{grid-template-columns:1fr}
-  .span6,.span5,.span7,.span4,.span8,.span3,.span2{grid-column:span 12}
+  .results-grid,.testi-grid,.tech-grid{grid-template-columns:1fr}
+  .span4,.span6,.span3{grid-column:span 12}
   .hero-sub{letter-spacing:.34em}
   .hero-sub::after{display:none}
   .marquee{margin-top:60px}
   .contact-lines{gap:22px}
+  .w-p{flex-basis:66vw}.w-s{flex-basis:70vw}.w-w,.w-b{flex-basis:82vw}
+  .rail-nav{display:none}
+  .organic{padding:30px 24px}
+  .stats-row{grid-template-columns:1fr 1fr;gap:20px}
 }
 </style>
 </head>
@@ -212,11 +289,11 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   <div class="wrap nav-in">
     <a href="#top" class="wordmark" aria-label="Lumexeda home"><span class="b">Lume</span><span class="x">x</span>eda<sup>✳</sup></a>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#work">Work</a>
       <a href="#reels">Reels</a>
+      <a href="#about">About</a>
+      <a href="#websites">Websites</a>
       <a href="#studio">Studio</a>
+      <a href="#work">Work</a>
       <a href="#contact">Contact</a>
     </div>
     <a class="btn btn-navy btn-nav" href="https://wa.me/201140859638" target="_blank" rel="noopener">Start a Project</a>
@@ -224,11 +301,11 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   </div>
 </nav>
 <div class="mobile-menu" id="mmenu">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#work">Work</a>
   <a href="#reels">Reels</a>
+  <a href="#about">About</a>
+  <a href="#websites">Websites</a>
   <a href="#studio">Studio</a>
+  <a href="#work">Work</a>
   <a href="#contact">Contact</a>
   <a href="https://wa.me/201140859638" target="_blank" rel="noopener" style="color:#9FB0FF">Start a Project ↗</a>
 </div>
@@ -236,195 +313,34 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
 <header class="hero" id="top">
   <div class="hero-grid-bg"></div>
   <div class="wrap hero-in">
-    <div class="dots"><i></i><i></i><i></i></div>
-    <p class="hero-tag">Full-Service Creative Studio</p>
-    <h1 class="hero-logo"><span class="b">Lume</span><span class="x">x</span>eda<span class="ast">✳</span></h1>
-    <p class="hero-sub">Studio &amp; Media</p>
-    <p class="hero-copy">We help brands grow with strategy, creative content and smart solutions — from the first idea to production, publishing and reporting. One partner. All solutions.</p>
-    <div class="hero-cta">
+    <div class="dots rise d1"><i></i><i></i><i></i></div>
+    <p class="hero-tag rise d2">Full-Service Creative Studio</p>
+    <h1 class="hero-logo rise d3"><span class="b">Lume</span><span class="x">x</span>eda<span class="ast">✳</span></h1>
+    <p class="hero-sub rise d4">Studio &amp; Media</p>
+    <p class="hero-copy rise d5">We help brands grow with strategy, creative content and smart solutions — from the first idea to production, publishing and reporting. One partner. All solutions.</p>
+    <div class="hero-cta rise d6">
       <a class="btn btn-navy" href="https://wa.me/201140859638" target="_blank" rel="noopener">Start a Project</a>
-      <a class="btn btn-ghost" href="#work">See Our Work</a>
+      <a class="btn btn-ghost" href="#reels">See Our Work</a>
     </div>
   </div>
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
-      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
+      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
+      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
     </div>
   </div>
 </header>
-
-<section id="about">
-  <div class="wrap about-grid">
-    <div class="about-copy fi">
-      <p class="kicker">Who we are</p>
-      <h2 class="sec condensed"><span class="b">About</span><br>Us <span class="star">✳</span></h2>
-      <p>We are a full-service creative studio helping brands build a strong online presence through strategy, content and design that connects and converts.</p>
-      <p>From the first competitor study to the monthly report, everything your brand needs lives under one roof — planned, produced, published and measured by one team.</p>
-      <div class="claim"><span class="box">✳</span> One partner. All solutions. Strategy to results.</div>
-    </div>
-    <div class="about-visual fi">
-      <div class="frame"></div>
-      <img src="images/about-donia-shooting.jpg" alt="Behind the scenes of a Lumexeda client shoot" loading="lazy">
-    </div>
-  </div>
-</section>
-
-<section class="services" id="services">
-  <div class="wrap">
-    <div class="sec-head fi">
-      <div>
-        <p class="kicker">What we do</p>
-        <h2 class="sec condensed"><span class="b">Our</span> Services</h2>
-      </div>
-      <p class="sec-note">Eight services, one team. Everything a brand needs to show up, stand out and grow online.</p>
-    </div>
-    <div class="svc-grid fi">
-      <div class="svc">
-        <span class="num">01</span>
-        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3"/></svg>
-        <h3>Professional Production</h3>
-        <p>Full studio setup with professional cameras, lighting &amp; audio. On-location or in-studio.</p>
-      </div>
-      <div class="svc">
-        <span class="num">02</span>
-        <svg viewBox="0 0 24 24"><path d="M12 19l7-7a4.95 4.95 0 10-7-7l-7 7 7 7z"/><path d="M9 8l6 6"/><circle cx="12" cy="12" r="1"/></svg>
-        <h3>Brand Identity</h3>
-        <p>Logo design, brand guidelines, visual identity and complete brand styling.</p>
-      </div>
-      <div class="svc">
-        <span class="num">03</span>
-        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg>
-        <h3>Social Media Management</h3>
-        <p>Complete page management to grow your brand and engage your audience.</p>
-      </div>
-      <div class="svc">
-        <span class="num">04</span>
-        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        <h3>Social Media Designs</h3>
-        <p>Eye-catching, on-brand designs for posts, stories, ads and more.</p>
-      </div>
-      <div class="svc">
-        <span class="num">05</span>
-        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        <h3>Content Strategy</h3>
-        <p>Data-driven content plans tailored to your goals and audience.</p>
-      </div>
-      <div class="svc">
-        <span class="num">06</span>
-        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg>
-        <h3>Reels &amp; Short-Form Videos</h3>
-        <p>Creative reels, trending edits and storytelling videos that drive reach and results.</p>
-      </div>
-      <div class="svc">
-        <span class="num">07</span>
-        <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0012 2z"/></svg>
-        <h3>Creative Concepts</h3>
-        <p>Fresh ideas, content angles and campaign concepts that make your brand stand out.</p>
-      </div>
-      <div class="svc">
-        <span class="num">08</span>
-        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
-        <h3>Analytics &amp; Reporting</h3>
-        <p>Performance tracking, insights and monthly reports to measure growth and optimize results.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="goals">
-  <div class="wrap goals-grid fi">
-    <div class="goal"><svg viewBox="0 0 24 24"><path d="M3 11l14-5v12L3 13v-2z"/><path d="M7 13v5a2 2 0 004 0v-4.3"/></svg><p>Increase Brand Awareness</p></div>
-    <div class="goal"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M18 5v6M21 8h-6"/></svg><p>Generate More Leads</p></div>
-    <div class="goal"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><p>Increase Sales</p></div>
-    <div class="goal"><svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9.4-8 11-4.5-1.6-8-6-8-11V5l8-3z"/><path d="M12 8l1.2 2.4L15.7 11l-2.5.6L12 14l-1.2-2.4L8.3 11l2.5-.6L12 8z"/></svg><p>Build Brand Identity</p></div>
-    <div class="goal"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/><path d="M12 10.7s-2.2-1.6-2.2-3.1c0-.9.7-1.6 1.5-1.6.3 0 .5.1.7.3.2-.2.4-.3.7-.3.8 0 1.5.7 1.5 1.6 0 1.5-2.2 3.1-2.2 3.1z"/></svg><p>Improve Engagement</p></div>
-    <div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z"/></svg><p>Create Viral Reels</p></div>
-  </div>
-</div>
-
-<section id="work">
-  <div class="wrap">
-    <div class="sec-head fi">
-      <div>
-        <p class="kicker">Selected work</p>
-        <h2 class="sec condensed"><span class="b">Work</span> That<br>Speaks <span class="star">✳</span></h2>
-      </div>
-      <p class="sec-note">Real strategy, plans and designs for real brands — the thinking first, then the visuals.</p>
-    </div>
-
-    <div class="client fi">
-      <div class="client-head"><span class="idx">01</span><h3>Dr. Menna</h3><span class="tag">Plastic Surgery — Social Media Management</span></div>
-      <p class="client-desc">Monthly content plans, reel scripts and Canva-crafted campaign designs for a plastic surgery page — photographed in our studio, published and reported every month.</p>
-      <div class="work-grid">
-        <div class="wcard span12 r21"><img src="images/menna-are-you-ready.jpg" alt="Dr. Menna campaign design — Are you Ready" loading="lazy"><span class="cap">Campaign Design</span></div>
-        <div class="wcard span4 r34"><img src="images/menna-services-poster.jpg" alt="Dr. Menna services poster — plastic and aesthetic surgeon" loading="lazy"><span class="cap">Services Poster</span></div>
-        <div class="wcard span4 r34"><img src="images/menna-name-portrait.jpg" alt="Dr. Menna portrait design" loading="lazy"><span class="cap">Portrait Design</span></div>
-        <div class="wcard span4 r34"><img src="images/menna-seated-intro.jpg" alt="Dr. Menna seated introduction design" loading="lazy"><span class="cap">Introduction Design</span></div>
-        <div class="wcard span3 r34"><img src="images/menna-expert-series.jpg" alt="The Expert Series carousel — opening slide" loading="lazy"><span class="cap">The Expert Series 01</span></div>
-        <div class="wcard span3 r34"><img src="images/menna-about-her.jpg" alt="About her carousel slide" loading="lazy"><span class="cap">The Expert Series 02</span></div>
-        <div class="wcard span3 r34"><img src="images/menna-specialties.jpg" alt="Her specialties carousel slide" loading="lazy"><span class="cap">The Expert Series 03</span></div>
-        <div class="wcard span3 r34"><img src="images/menna-shoot-composition.jpg" alt="Photoshoot composition from the studio session" loading="lazy"><span class="cap">Studio Composition</span></div>
-      </div>
-    </div>
-
-    <div class="client fi">
-      <div class="client-head"><span class="idx">02</span><h3>Mai Abdelhafez</h3><span class="tag">Interior Design — Strategy &amp; Content</span></div>
-      <p class="client-desc">A full social media direction for an interior design studio: competitor study, positioning from portfolio to design authority, a three-month roadmap and monthly feed grids.</p>
-      <div class="work-grid">
-        <div class="wcard span7 r169"><img src="images/work-mai-positioning.jpg" alt="Mai Abdelhafez strategy — positioning from portfolio to design authority" loading="lazy"><span class="cap">Positioning Strategy</span></div>
-        <div class="wcard span5 r169"><img src="images/work-mai-roadmap.jpg" alt="Three-month content roadmap — foundation, authority, conversion" loading="lazy"><span class="cap">3-Month Roadmap</span></div>
-        <div class="wcard span6 r43"><img src="images/work-mai-grid-1.jpg" alt="Month one feed-grid reference from the 24-piece content bank" loading="lazy"><span class="cap">Month 01 Feed Grid</span></div>
-        <div class="wcard span6 r43"><img src="images/work-mai-grid-2.jpg" alt="Month two feed-grid reference" loading="lazy"><span class="cap">Month 02 Feed Grid</span></div>
-      </div>
-    </div>
-
-    <div class="client fi">
-      <div class="client-head"><span class="idx">03</span><h3>Halawa Flowers</h3><span class="tag">Florist — Concepts &amp; Storytelling</span></div>
-      <p class="client-desc">People-first gifting stories and flower-craft concepts, built on a competitor study and a phased content roadmap.</p>
-      <div class="work-grid">
-        <div class="wcard span7 r169"><img src="images/work-halawa-concepts.jpg" alt="Halawa Flowers — people-first gifting stories and flower-craft concepts" loading="lazy"><span class="cap">Content Concepts</span></div>
-        <div class="wcard span5 r169"><img src="images/work-halawa-study.jpg" alt="Halawa Flowers — competitor comparison study" loading="lazy"><span class="cap">Competitor Study</span></div>
-      </div>
-    </div>
-
-    <div class="client fi">
-      <div class="client-head"><span class="idx">04</span><h3>Ahmed Farrag</h3><span class="tag">In Out Studio — Personal Brand Designs</span></div>
-      <p class="client-desc">A founder-led personal brand for the architect behind In Out Studio: a complete social media design system of founder portraits, campaign posts and brand statements.</p>
-      <div class="work-grid">
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-1.jpg" alt="Ahmed Farrag — blue-lit founder portrait, Designing Spaces that Reflect You" loading="lazy"><span class="cap">Brand Campaign</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-2.jpg" alt="Ahmed Farrag — From Vision to Reality, beige suit portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-3.jpg" alt="Ahmed Farrag — From Vision to Reality, dark portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-4.jpg" alt="Ahmed Farrag — A Signature in Every Space" loading="lazy"><span class="cap">A Signature in Every Space</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-5.jpg" alt="Ahmed Farrag — black and white founder portrait" loading="lazy"><span class="cap">Founder &amp; CEO</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-6.jpg" alt="Ahmed Farrag — Spaces designed for a better tomorrow" loading="lazy"><span class="cap">A Better Tomorrow</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-7.jpg" alt="Ahmed Farrag — A Vision. A Signature." loading="lazy"><span class="cap">A Vision. A Signature.</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-8.jpg" alt="Ahmed Farrag — Architecture and interior design created for people" loading="lazy"><span class="cap">Created for People</span></div>
-        <div class="wcard span4 r45 contain"><img src="images/work-farag-9.jpg" alt="Ahmed Farrag — Design with Purpose, double-exposure portrait" loading="lazy"><span class="cap">Design with Purpose</span></div>
-      </div>
-    </div>
-
-    <div class="client fi" style="margin-bottom:0">
-      <div class="client-head"><span class="idx">05</span><h3>Lucin</h3><span class="tag">Fashion — Positioning &amp; Planning</span></div>
-      <p class="client-desc">Market positioning built from competitor research: eight content pillars and a 30-day plan designed to stand out.</p>
-      <div class="work-grid">
-        <div class="wcard span6 r169"><img src="images/work-lucin-pillars.jpg" alt="Lucin — eight content pillars" loading="lazy"><span class="cap">Content Pillars</span></div>
-        <div class="wcard span6 r169"><img src="images/work-lucin-plan.jpg" alt="Lucin — proposed 30-day content plan" loading="lazy"><span class="cap">30-Day Plan</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="reels on-dark" id="reels">
   <div class="wrap">
     <div class="sec-head fi">
       <div>
         <p class="kicker on-dark">Shot, edited, published</p>
-        <h2 class="sec condensed" style="color:var(--paper)"><span style="color:#7A93FF">Reels</span> &amp;<br>Short-Form</h2>
+        <h2 class="sec condensed"><span class="b">Reels</span> &amp;<br>Short-Form</h2>
       </div>
       <p class="sec-note">A selection of reels we produced for clients across medicine, fashion, real estate, cars and more. Tap any cover to watch.</p>
     </div>
-    <div class="reel-grid fi">
+    <div class="reel-grid stg">
       <a class="reel" href="https://drive.google.com/file/d/1uCIoKNClPu5SWiLssdjlngXwXjD4ZQwm/view" target="_blank" rel="noopener"><img src="images/reels/reel-01-personal-brand.jpg" alt="Personal brand reel — How do I start in marketing" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Personal Brand — How I started in marketing</span></a>
       <a class="reel" href="https://drive.google.com/file/d/1p7hinhRi32lkLywwOIq_7SViyTMnj6Mj/view" target="_blank" rel="noopener"><img src="images/reels/reel-02-pt-qa.jpg" alt="Physical therapy reel — answering patient questions" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Physical Therapy — Patient Q&amp;A</span></a>
       <a class="reel" href="https://drive.google.com/file/d/1sSLuiH9NgAz4PI5FRkDhAIvc7DPk36Fd/view" target="_blank" rel="noopener"><img src="images/reels/reel-03-men-250-offers.jpg" alt="Men's clothing reel — the 250 offers" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Men's Clothing — The 250 Offers</span></a>
@@ -441,23 +357,92 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   </div>
 </section>
 
-<section id="results">
-  <div class="wrap">
-    <div class="sec-head fi">
-      <div>
-        <p class="kicker">Proof, not promises</p>
-        <h2 class="sec condensed"><span class="b">Results</span><br>That Speak</h2>
-      </div>
-      <p class="sec-note">Real account insights from a managed client page — steady growth in reach, engagement and bookings, tracked and reported every month.</p>
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy fi">
+      <p class="kicker">Who we are</p>
+      <h2 class="sec condensed"><span class="b">About</span><br>Us <span class="star">✳</span></h2>
+      <p>Lumexeda is a full-service creative studio — a team of strategists, designers, shooters and editors helping brands build a strong online presence through strategy, content and design that connects and converts.</p>
+      <p>From the first competitor study to the monthly report, everything your brand needs lives under one roof — planned, produced, published and measured by one team. No face behind the brand: the whole studio stands behind your project.</p>
+      <div class="claim"><span class="box">✳</span> One partner. All solutions. Strategy to results.</div>
     </div>
-    <div class="results-grid fi">
-      <img src="images/results-30d.jpg" alt="30-day account insights for a managed client page" loading="lazy">
-      <img src="images/results-90d.jpg" alt="90-day account insights for a managed client page" loading="lazy">
+    <div class="about-visual fi">
+      <div class="frame"></div>
+      <span class="badge">Meet the character</span>
+      <img src="images/character-sheet.jpg" alt="The Lumexeda virtual brand character — character sheet with turnaround, expressions and modes" loading="lazy">
     </div>
   </div>
 </section>
 
-<section class="services" id="studio">
+<section class="tech" id="websites">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker on-dark">Technical</p>
+        <h2 class="sec condensed"><span class="b">Websites</span> &amp;<br>Digital Products</h2>
+      </div>
+      <p class="sec-note">Lumexeda builds too. We design, code and deploy websites, portfolios and digital products — from the first wireframe to the live URL.</p>
+    </div>
+    <div class="tech-grid stg">
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">auticare-ruddy.vercel.app</span></div>
+          <img src="images/tech-auticare.jpg" alt="AutiCare platform homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">AI Platform</span>
+          <h3>AutiCare</h3>
+          <p>AI-powered early autism screening and support platform.</p>
+          <div class="ttags"><span>React</span><span>AI</span><span>Web</span></div>
+          <div class="tlinks"><a href="https://auticare-ruddy.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">portfolio-hazel-three-99.vercel.app</span></div>
+          <img src="images/tech-shahd.jpg" alt="Shahd Alaa portfolio homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">Web Design</span>
+          <h3>Shahd Alaa Portfolio</h3>
+          <p>Creative portfolio digital experience.</p>
+          <div class="ttags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <div class="tlinks"><a href="https://portfolio-hazel-three-99.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">donia-alaa-portfolio.vercel.app</span></div>
+          <img src="images/tech-donia-portfolio.jpg" alt="Donia Alaa portfolio homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">Portfolio</span>
+          <h3>Donia Alaa Portfolio</h3>
+          <p>A social media strategist's portfolio — case studies, reels and studio work.</p>
+          <div class="ttags"><span>Portfolio</span><span>Vercel</span><span>GitHub</span></div>
+          <div class="tlinks">
+            <a href="https://donia-alaa-portfolio.vercel.app/" target="_blank" rel="noopener">View Project ↗</a>
+            <a href="https://github.com/donia-alaa/donia-alaa-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">lumexeda.vercel.app</span></div>
+          <img src="images/tech-lumexeda-v1.jpg" alt="Lumexeda first website homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">Flagship</span>
+          <h3>Lumexeda — V1</h3>
+          <p>Creative direction, UI/UX, frontend &amp; motion digital experience. Our first home — the one you're on now is its successor.</p>
+          <div class="ttags"><span>Frontend</span><span>Motion</span><span>UX</span></div>
+          <div class="tlinks"><a href="https://lumexeda.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="studio">
   <div class="wrap">
     <div class="studio-intro fi">
       <div>
@@ -472,10 +457,11 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
           <span class="feat">Modular Sets</span>
           <span class="feat">On-Location Too</span>
         </div>
+        <a class="studio-link" href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener">Visit the Studio ↗</a>
       </div>
     </div>
     <p class="subhead fi">Location Setups</p>
-    <div class="studio-grid fi">
+    <div class="studio-grid stg">
       <div class="wcard span4 r34"><img src="images/loc-sofa-ottoman.jpg" alt="Sofa and fluffy ottoman set with lilies" loading="lazy"><span class="cap">The Sofa Set</span></div>
       <div class="wcard span4 r34"><img src="images/loc-armchair-sunflowers.jpg" alt="Tufted armchair with sunflowers and floor lamp" loading="lazy"><span class="cap">Armchair &amp; Sunflowers</span></div>
       <div class="wcard span4 r34"><img src="images/loc-two-chairs.jpg" alt="Two-chair conversation setup with curtains" loading="lazy"><span class="cap">Conversation Set</span></div>
@@ -484,18 +470,172 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <div class="wcard span4 r34"><img src="images/loc-chair-woodslat.jpg" alt="Accent chair on a wood-slat wall with sunflowers" loading="lazy"><span class="cap">Wood-Slat Corner</span></div>
     </div>
     <p class="subhead fi">Behind the Scenes</p>
-    <div class="studio-grid fi">
-      <div class="wcard span3 r34"><video src="images/studio-cyclorama-white.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Shooting on the white cyclorama"></video><span class="cap">The Cyclorama</span></div>
-      <div class="wcard span3 r34"><video src="images/studio-blue-setup.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Creative blue-light setup"></video><span class="cap">Creative Lighting</span></div>
-      <div class="wcard span3 r34"><img src="images/bts-camera-seated.jpg" alt="Framing a seated portrait session on the cyclorama" loading="lazy"><span class="cap">On Set</span></div>
-      <div class="wcard span3 r34"><img src="images/bts-donia-shooting.jpg" alt="Our team shooting a client session on the Sony camera" loading="lazy"><span class="cap">The Team at Work</span></div>
-      <div class="wcard span6 r169"><img src="images/bts-monitor-standing.jpg" alt="Camera monitor framing a standing portrait" loading="lazy"><span class="cap">On Monitor</span></div>
-      <div class="wcard span6 r169"><img src="images/bts-camera-crossed.jpg" alt="Adjusting the camera during a studio session" loading="lazy"><span class="cap">In the Details</span></div>
-      <div class="wcard span2 r34"><img src="images/bts-5.jpg" alt="Seated client interview under studio lights on the cyclorama" loading="lazy"><span class="cap">Client Session</span></div>
-      <div class="wcard span2 r34"><img src="images/bts-6.jpg" alt="The team filming a seated client session" loading="lazy"><span class="cap">The Team at Work</span></div>
-      <div class="wcard span2 r34"><img src="images/bts-7.jpg" alt="Camera monitor framing a standing client portrait" loading="lazy"><span class="cap">On Monitor</span></div>
-      <div class="wcard span3 r34"><img src="images/bts-8.jpg" alt="Client on the cyclorama between takes" loading="lazy"><span class="cap">Between Takes</span></div>
-      <div class="wcard span3 r34"><img src="images/bts-9.jpg" alt="Photographing a seated client portrait on the cyclorama" loading="lazy"><span class="cap">On Set</span></div>
+    <div class="rail-wrap fi">
+      <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      <div class="rail">
+        <div class="rcard w-p"><video src="images/studio-cyclorama-white.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Shooting on the white cyclorama"></video><span class="cap">The Cyclorama</span></div>
+        <div class="rcard w-p"><video src="images/studio-blue-setup.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Creative blue-light setup"></video><span class="cap">Creative Lighting</span></div>
+        <div class="rcard w-p"><img src="images/bts-camera-seated.jpg" alt="Framing a seated portrait session on the cyclorama" loading="lazy"><span class="cap">On Set</span></div>
+        <div class="rcard w-w"><img src="images/bts-monitor-standing.jpg" alt="Camera monitor framing a standing portrait" loading="lazy"><span class="cap">On Monitor</span></div>
+        <div class="rcard w-p"><img src="images/bts-5.jpg" alt="Seated client interview under studio lights on the cyclorama" loading="lazy"><span class="cap">Client Session</span></div>
+        <div class="rcard w-p"><img src="images/bts-6.jpg" alt="The team filming a seated client session" loading="lazy"><span class="cap">The Team at Work</span></div>
+        <div class="rcard w-w"><img src="images/bts-camera-crossed.jpg" alt="Adjusting the camera during a studio session" loading="lazy"><span class="cap">In the Details</span></div>
+        <div class="rcard w-p"><img src="images/bts-7.jpg" alt="Camera monitor framing a standing client portrait" loading="lazy"><span class="cap">On Monitor</span></div>
+        <div class="rcard w-p"><img src="images/bts-8.jpg" alt="Client on the cyclorama between takes" loading="lazy"><span class="cap">Between Takes</span></div>
+        <div class="rcard w-p"><img src="images/bts-9.jpg" alt="Photographing a seated client portrait on the cyclorama" loading="lazy"><span class="cap">On Set</span></div>
+      </div>
+      <div class="rprog"><i></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker">What we do</p>
+        <h2 class="sec condensed"><span class="b">Our</span> Services</h2>
+      </div>
+      <p class="sec-note">Eight services, one team. Everything a brand needs to show up, stand out and grow online.</p>
+    </div>
+    <div class="svc-grid stg">
+      <div class="svc"><span class="num">01</span><svg viewBox="0 0 24 24"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3"/></svg><h3>Professional Production</h3><p>Full studio setup with professional cameras, lighting &amp; audio. On-location or in-studio.</p></div>
+      <div class="svc"><span class="num">02</span><svg viewBox="0 0 24 24"><path d="M12 19l7-7a4.95 4.95 0 10-7-7l-7 7 7 7z"/><path d="M9 8l6 6"/><circle cx="12" cy="12" r="1"/></svg><h3>Brand Identity</h3><p>Logo design, brand guidelines, visual identity and complete brand styling.</p></div>
+      <div class="svc"><span class="num">03</span><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg><h3>Social Media Management</h3><p>Complete page management to grow your brand and engage your audience.</p></div>
+      <div class="svc"><span class="num">04</span><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h3>Social Media Designs</h3><p>Eye-catching, on-brand designs for posts, stories, ads and more.</p></div>
+      <div class="svc"><span class="num">05</span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><h3>Content Strategy</h3><p>Data-driven content plans tailored to your goals and audience.</p></div>
+      <div class="svc"><span class="num">06</span><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg><h3>Reels &amp; Short-Form Videos</h3><p>Creative reels, trending edits and storytelling videos that drive reach and results.</p></div>
+      <div class="svc"><span class="num">07</span><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0012 2z"/></svg><h3>Creative Concepts</h3><p>Fresh ideas, content angles and campaign concepts that make your brand stand out.</p></div>
+      <div class="svc"><span class="num">08</span><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg><h3>Analytics &amp; Reporting</h3><p>Performance tracking, insights and monthly reports to measure growth and optimize results.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="goals">
+  <div class="wrap goals-grid stg">
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M3 11l14-5v12L3 13v-2z"/><path d="M7 13v5a2 2 0 004 0v-4.3"/></svg><p>Increase Brand Awareness</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M18 5v6M21 8h-6"/></svg><p>Generate More Leads</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><p>Increase Sales</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9.4-8 11-4.5-1.6-8-6-8-11V5l8-3z"/><path d="M12 8l1.2 2.4L15.7 11l-2.5.6L12 14l-1.2-2.4L8.3 11l2.5-.6L12 8z"/></svg><p>Build Brand Identity</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/><path d="M12 10.7s-2.2-1.6-2.2-3.1c0-.9.7-1.6 1.5-1.6.3 0 .5.1.7.3.2-.2.4-.3.7-.3.8 0 1.5.7 1.5 1.6 0 1.5-2.2 3.1-2.2 3.1z"/></svg><p>Improve Engagement</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z"/></svg><p>Create Viral Reels</p></div>
+  </div>
+</div>
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker">Selected work</p>
+        <h2 class="sec condensed"><span class="b">Work</span> That<br>Speaks <span class="star">✳</span></h2>
+      </div>
+      <p class="sec-note">Real strategy, plans and designs for real brands — the thinking first, then the visuals. Scroll each story sideways.</p>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">01</span><h3>Dr. Menna</h3><span class="tag">Plastic Surgery — Social Media Management</span></div>
+      <p class="client-desc">Monthly content plans, reel scripts and Canva-crafted campaign designs for a plastic surgery page — photographed in our studio, published and reported every month.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <div class="rcard w-w" style="aspect-ratio:2/1"><img src="images/menna-are-you-ready.jpg" alt="Dr. Menna campaign design — Are you Ready" loading="lazy"><span class="cap">Campaign Design</span></div>
+          <div class="rcard w-p"><img src="images/menna-services-poster.jpg" alt="Dr. Menna services poster — plastic and aesthetic surgeon" loading="lazy"><span class="cap">Services Poster</span></div>
+          <div class="rcard w-p"><img src="images/menna-name-portrait.jpg" alt="Dr. Menna portrait design" loading="lazy"><span class="cap">Portrait Design</span></div>
+          <div class="rcard w-p"><img src="images/menna-seated-intro.jpg" alt="Dr. Menna seated introduction design" loading="lazy"><span class="cap">Introduction Design</span></div>
+          <div class="rcard w-p"><img src="images/menna-expert-series.jpg" alt="The Expert Series carousel — opening slide" loading="lazy"><span class="cap">The Expert Series 01</span></div>
+          <div class="rcard w-p"><img src="images/menna-about-her.jpg" alt="About her carousel slide" loading="lazy"><span class="cap">The Expert Series 02</span></div>
+          <div class="rcard w-p"><img src="images/menna-specialties.jpg" alt="Her specialties carousel slide" loading="lazy"><span class="cap">The Expert Series 03</span></div>
+          <div class="rcard w-p"><img src="images/menna-shoot-composition.jpg" alt="Photoshoot composition from the studio session" loading="lazy"><span class="cap">Studio Composition</span></div>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">02</span><h3>Ahmed Farrag</h3><span class="tag">In Out Studio — Personal Brand Designs</span></div>
+      <p class="client-desc">A founder-led personal brand for the architect behind In Out Studio — from the pre-shoot content direction and moodboards to a complete social media design system of founder portraits, campaign posts and brand statements.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <div class="rcard w-b contain"><img src="images/work-farag-moodboard-dark.jpg" alt="InOut Studio visual content moodboard — dark version, full content direction" loading="lazy"><span class="cap">Content Direction — Dark</span></div>
+          <div class="rcard w-b contain-light"><img src="images/work-farag-moodboard-light.jpg" alt="InOut Studio visual content moodboard — light version" loading="lazy"><span class="cap">Content Direction — Light</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-1.jpg" alt="Ahmed Farrag — blue-lit founder portrait, Designing Spaces that Reflect You" loading="lazy"><span class="cap">Brand Campaign</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-2.jpg" alt="Ahmed Farrag — From Vision to Reality, beige suit portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-3.jpg" alt="Ahmed Farrag — From Vision to Reality, dark portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-4.jpg" alt="Ahmed Farrag — A Signature in Every Space" loading="lazy"><span class="cap">A Signature in Every Space</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-5.jpg" alt="Ahmed Farrag — black and white founder portrait" loading="lazy"><span class="cap">Founder &amp; CEO</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-6.jpg" alt="Ahmed Farrag — Spaces designed for a better tomorrow" loading="lazy"><span class="cap">A Better Tomorrow</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-7.jpg" alt="Ahmed Farrag — A Vision. A Signature." loading="lazy"><span class="cap">A Vision. A Signature.</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-8.jpg" alt="Ahmed Farrag — Architecture and interior design created for people" loading="lazy"><span class="cap">Created for People</span></div>
+          <div class="rcard w-p contain"><img src="images/work-farag-9.jpg" alt="Ahmed Farrag — Design with Purpose, double-exposure portrait" loading="lazy"><span class="cap">Design with Purpose</span></div>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">03</span><h3>Mai Abdelhafez</h3><span class="tag">Interior Design — Strategy &amp; Content</span></div>
+      <p class="client-desc">A full social media direction for an interior design studio: competitor study, positioning from portfolio to design authority, a three-month roadmap and monthly feed grids.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <div class="rcard w-w"><img src="images/work-mai-positioning.jpg" alt="Mai Abdelhafez strategy — positioning from portfolio to design authority" loading="lazy"><span class="cap">Positioning Strategy</span></div>
+          <div class="rcard w-w"><img src="images/work-mai-roadmap.jpg" alt="Three-month content roadmap — foundation, authority, conversion" loading="lazy"><span class="cap">3-Month Roadmap</span></div>
+          <div class="rcard w-w"><img src="images/work-mai-grid-1.jpg" alt="Month one feed-grid reference from the 24-piece content bank" loading="lazy"><span class="cap">Month 01 Feed Grid</span></div>
+          <div class="rcard w-w"><img src="images/work-mai-grid-2.jpg" alt="Month two feed-grid reference" loading="lazy"><span class="cap">Month 02 Feed Grid</span></div>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">04</span><h3>Halawa Flowers</h3><span class="tag">Florist — Concepts &amp; Storytelling</span></div>
+      <p class="client-desc">People-first gifting stories and flower-craft concepts, built on a competitor study and a phased content roadmap.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <div class="rcard w-w"><img src="images/work-halawa-concepts.jpg" alt="Halawa Flowers — people-first gifting stories and flower-craft concepts" loading="lazy"><span class="cap">Content Concepts</span></div>
+          <div class="rcard w-w"><img src="images/work-halawa-study.jpg" alt="Halawa Flowers — competitor comparison study" loading="lazy"><span class="cap">Competitor Study</span></div>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi" style="margin-bottom:0">
+      <div class="client-head"><span class="idx">05</span><h3>Lucin</h3><span class="tag">Fashion — Positioning &amp; Planning</span></div>
+      <p class="client-desc">Market positioning built from competitor research: eight content pillars and a 30-day plan designed to stand out.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <div class="rcard w-w"><img src="images/work-lucin-pillars.jpg" alt="Lucin — eight content pillars" loading="lazy"><span class="cap">Content Pillars</span></div>
+          <div class="rcard w-w"><img src="images/work-lucin-plan.jpg" alt="Lucin — proposed 30-day content plan" loading="lazy"><span class="cap">30-Day Plan</span></div>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker">Proof, not promises</p>
+        <h2 class="sec condensed"><span class="b">Results</span><br>That Speak</h2>
+      </div>
+      <p class="sec-note">Real account insights from a managed client page — steady growth in reach, engagement and bookings, tracked and reported every month.</p>
+    </div>
+    <div class="organic fi">
+      <div class="big">No Paid Ads.<br><span>Real Results.</span></div>
+      <p>We don't push ad budgets. Strategy, content and consistency do the work — bringing our clients leads, bookings and growth organically, instead of spending on advertising.</p>
+    </div>
+    <div class="stats-row stg">
+      <div class="stat"><div class="n"><span class="cnt" data-n="51999">0</span></div><div class="l">Views in 30 days<br>+69.3% vs. previous</div></div>
+      <div class="stat"><div class="n"><span class="u">+</span><span class="cnt" data-n="184">0</span></div><div class="l">Net followers<br>in 30 days</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-n="127661">0</span></div><div class="l">Views in 90 days<br>+16.2% followers</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-n="0">0</span> <span class="u">EGP</span></div><div class="l">Spent on ads<br>all organic</div></div>
+    </div>
+    <div class="results-grid fi" style="margin-top:46px">
+      <img src="images/results-30d.jpg" alt="30-day account insights for a managed client page" loading="lazy">
+      <img src="images/results-90d.jpg" alt="90-day account insights for a managed client page" loading="lazy">
     </div>
   </div>
 </section>
@@ -507,11 +647,13 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
         <p class="kicker">Client words</p>
         <h2 class="sec condensed"><span class="b">Testi</span>monials</h2>
       </div>
+      <p class="sec-note">What our clients tell us — shared anonymously, exactly as it was said.</p>
     </div>
-    <div class="testi-grid fi">
-      <div class="testi soon"><span class="star">✳</span><p>Coming soon</p><small style="color:rgba(20,20,25,.55);font-size:13px">Words from our clients, collected and on the way.</small></div>
-      <div class="testi soon"><span class="star">✳</span><p>Coming soon</p><small style="color:rgba(20,20,25,.55);font-size:13px">Words from our clients, collected and on the way.</small></div>
-      <div class="testi soon"><span class="star">✳</span><p>Coming soon</p><small style="color:rgba(20,20,25,.55);font-size:13px">Words from our clients, collected and on the way.</small></div>
+    <div class="testi-grid stg">
+      <div class="testi"><span class="qm">"</span><p class="q">I'm very happy with the collaboration. The look of the page made a huge difference — and I reached real bookings and real results without paying for a single ad.</p><p class="who">Plastic Surgery Client — Monthly Management</p></div>
+      <div class="testi"><span class="qm">"</span><p class="q">The work with them was very good. The team worked hard with me on shoot day and did everything I wanted.</p><p class="who">Architecture Founder — Personal Brand</p></div>
+      <div class="testi"><span class="qm">"</span><p class="q">I keep telling them how happy I am. They always bring different ideas that I love and actually benefit from — I could never express things the right way myself. They truly made a difference to my page and my reach.</p><p class="who">Interior Design Client — Strategy &amp; Content</p></div>
+      <div class="testi"><span class="qm">"</span><p class="q">Thoughtful concepts, real care for the details, and content that finally feels like us.</p><p class="who">Florist Client — Concepts &amp; Storytelling</p></div>
     </div>
   </div>
 </section>
@@ -538,11 +680,11 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   <div class="wrap foot">
     <img src="images/logo-lx.png" alt="Lumexeda LX logo">
     <div class="fl">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#work">Work</a>
       <a href="#reels">Reels</a>
+      <a href="#about">About</a>
+      <a href="#websites">Websites</a>
       <a href="#studio">Studio</a>
+      <a href="#work">Work</a>
     </div>
     <small>© 2026 Lumexeda Studio &amp; Media</small>
   </div>
@@ -554,8 +696,36 @@ b.addEventListener('click',function(){m.classList.toggle('open')});
 m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open')})});
 if('IntersectionObserver' in window){
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.12});
-  document.querySelectorAll('.fi').forEach(function(el){io.observe(el)});
-}else{document.querySelectorAll('.fi').forEach(function(el){el.classList.add('vis')})}
+  document.querySelectorAll('.fi,.stg').forEach(function(el){io.observe(el)});
+}else{document.querySelectorAll('.fi,.stg').forEach(function(el){el.classList.add('vis')})}
+/* rails */
+document.querySelectorAll('.rail-wrap').forEach(function(w){
+  var rail=w.querySelector('.rail'),prog=w.querySelector('.rprog i');
+  w.querySelectorAll('.rnav').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      rail.scrollBy({left:(+btn.dataset.dir)*rail.clientWidth*.75,behavior:'smooth'});
+    });
+  });
+  function upd(){
+    var max=rail.scrollWidth-rail.clientWidth;
+    var p=max>0?rail.scrollLeft/max:0;
+    if(prog)prog.style.width=(12+p*88)+'%';
+  }
+  rail.addEventListener('scroll',upd,{passive:true});upd();
+});
+/* counters */
+function fmt(n){return n.toLocaleString('en-US')}
+if('IntersectionObserver' in window){
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;cio.unobserve(e.target);
+    var el=e.target,target=+el.dataset.n,dur=1400,t0=null;
+    if(target===0){el.textContent='0';return}
+    function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/dur,1);var ease=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.round(target*ease));if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  })},{threshold:.4});
+  document.querySelectorAll('.cnt').forEach(function(el){cio.observe(el)});
+}else{document.querySelectorAll('.cnt').forEach(function(el){el.textContent=fmt(+el.dataset.n)})}
 </script>
 </body>
 </html>
