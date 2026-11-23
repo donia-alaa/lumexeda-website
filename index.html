@@ -361,6 +361,19 @@ a.rcard{display:block;color:inherit;text-decoration:none}
 .hero-char.is-playing video{opacity:1}
 .hero-char.is-playing .char-poster{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.hero-char video{display:none!important}.hero-char.is-playing .char-poster{visibility:visible}}
+
+/* Compact three-dimensional studio set carousel */
+.location-showcase{--card-w:258px;--card-h:338px;--radius:340px;margin:50px -32px 70px;padding:28px 0 26px;background:radial-gradient(ellipse at 50% 44%,#293578 0%,#161a30 45%,#111218 76%);border-block:1px solid rgba(159,176,255,.18);overflow:hidden;isolation:isolate}
+.location-head{padding:0 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}.location-head .subhead{margin:0}.location-head>span{font:11px 'Oswald',sans-serif;letter-spacing:.28em;color:#9fafff}
+.location-stage{height:440px;position:relative;perspective:1200px;touch-action:pan-y;cursor:grab}
+.location-stage::after{content:"";position:absolute;width:70%;height:65px;left:15%;bottom:8px;background:radial-gradient(ellipse,rgba(61,91,255,.2),transparent 68%);pointer-events:none}
+.location-ring{position:absolute;left:50%;top:46%;width:var(--card-w);height:var(--card-h);margin-left:calc(var(--card-w)/-2);margin-top:calc(var(--card-h)/-2);transform-style:preserve-3d;transform:translateZ(calc(var(--radius)*-1)) rotateY(0deg);transition:transform 950ms cubic-bezier(.22,.65,.25,1)}
+.location-card{position:absolute;inset:0;transform:rotateY(calc(var(--i)*60deg)) translateZ(var(--radius));backface-visibility:hidden;border:1px solid rgba(244,242,237,.28);border-radius:12px;overflow:hidden;background:#171922;box-shadow:0 22px 42px #0009;transition:filter 950ms,opacity 950ms;filter:brightness(.5)}
+.location-card.is-active{filter:brightness(1)}.location-card img{width:100%;height:100%;object-fit:cover}.location-card figcaption{position:absolute;inset:auto 0 0;padding:44px 18px 17px;background:linear-gradient(transparent,#000c);font:13px 'Oswald',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.location-controls{display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:2}.location-controls button{width:40px;height:40px;border:1px solid #f4f2ed50;border-radius:50%;background:transparent;color:#f4f2ed;font-size:20px;cursor:pointer;transition:background .2s}.location-controls button:hover{background:#3d5bff}.location-status{text-align:center;min-width:200px}.location-count{font:10px 'Oswald',sans-serif;letter-spacing:.25em;color:#9fafff}.location-title{font:18px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.12em;color:#f4f2ed;margin-top:4px}.location-pause{font-size:13px!important}.location-hint{text-align:center;font-size:11px;color:#f4f2ed80;margin-top:18px;letter-spacing:.04em}
+.bts-rail .rcard{height:310px;width:230px;flex-basis:230px}.bts-rail .rail{gap:18px}.bts-rail .rcard img{object-fit:cover}
+@media(max-width:600px){.location-showcase{--card-w:180px;--card-h:240px;--radius:205px;margin:32px -20px 44px;padding:22px 0}.location-head{padding:0 22px;display:block}.location-head>span{display:block;font-size:9px;margin-top:9px}.location-stage{height:315px;perspective:850px}.location-controls{gap:13px}.location-status{min-width:165px}.location-title{font-size:15px}.location-controls button{width:32px;height:32px}.location-hint{font-size:10px}.bts-rail .rcard{height:260px;width:195px;flex-basis:195px}}
+@media(prefers-reduced-motion:reduce){.location-ring,.location-card{transition:none}}
 </style>
 </head>
 <body>
@@ -538,32 +551,15 @@ a.rcard{display:block;color:inherit;text-decoration:none}
         <a class="studio-link" href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener">Visit the Studio ↗</a>
       </div>
     </div>
-    <p class="subhead fi">Location Setups</p>
-    <div class="studio-grid stg">
-      <div class="wcard span4 r34"><img src="images/loc-sofa-ottoman.jpg" alt="Sofa and fluffy ottoman set with lilies" loading="lazy"><span class="cap">The Sofa Set</span></div>
-      <div class="wcard span4 r34"><img src="images/loc-armchair-sunflowers.jpg" alt="Tufted armchair with sunflowers and floor lamp" loading="lazy"><span class="cap">Armchair &amp; Sunflowers</span></div>
-      <div class="wcard span4 r34"><img src="images/loc-two-chairs.jpg" alt="Two-chair conversation setup with curtains" loading="lazy"><span class="cap">Conversation Set</span></div>
-      <div class="wcard span4 r34"><img src="images/loc-desk-woodslat.jpg" alt="Desk setup on a wood-slat wall with florals" loading="lazy"><span class="cap">The Desk Set</span></div>
-      <div class="wcard span4 r34"><img src="images/loc-armchair-stone.jpg" alt="Brown armchair on a sunlit stone wall" loading="lazy"><span class="cap">Stone Wall Corner</span></div>
-      <div class="wcard span4 r34"><img src="images/loc-chair-woodslat.jpg" alt="Accent chair on a wood-slat wall with sunflowers" loading="lazy"><span class="cap">Wood-Slat Corner</span></div>
+    <div class="location-showcase" id="location-showcase" role="region" aria-label="Studio location carousel" aria-roledescription="carousel">
+      <div class="location-head"><p class="subhead">Location Setups</p><span>SIX SETS. YOUR NEXT SCENE.</span></div>
+      <div class="location-stage"><div class="location-ring"><figure class="location-card" style="--i:0" data-title="The Sofa Set"><img src="images/loc-sofa-ottoman.jpg" alt="Sofa and fluffy ottoman set with lilies" loading="lazy"><figcaption>The Sofa Set</figcaption></figure><figure class="location-card" style="--i:1" data-title="Armchair &amp; Sunflowers"><img src="images/loc-armchair-sunflowers.jpg" alt="Tufted armchair with sunflowers and floor lamp" loading="lazy"><figcaption>Armchair &amp; Sunflowers</figcaption></figure><figure class="location-card" style="--i:2" data-title="Conversation Set"><img src="images/loc-two-chairs.jpg" alt="Two-chair conversation setup with curtains" loading="lazy"><figcaption>Conversation Set</figcaption></figure><figure class="location-card" style="--i:3" data-title="The Desk Set"><img src="images/loc-desk-woodslat.jpg" alt="Desk setup on a wood-slat wall with florals" loading="lazy"><figcaption>The Desk Set</figcaption></figure><figure class="location-card" style="--i:4" data-title="Stone Wall Corner"><img src="images/loc-armchair-stone.jpg" alt="Brown armchair on a sunlit stone wall" loading="lazy"><figcaption>Stone Wall Corner</figcaption></figure><figure class="location-card" style="--i:5" data-title="Wood-Slat Corner"><img src="images/loc-chair-woodslat.jpg" alt="Accent chair on a wood-slat wall with sunflowers" loading="lazy"><figcaption>Wood-Slat Corner</figcaption></figure></div></div>
+      <div class="location-controls"><button type="button" class="location-prev" aria-label="Previous studio set">←</button><div class="location-status"><span class="location-count">01 / 06</span><p class="location-title">The Sofa Set</p></div><button type="button" class="location-next" aria-label="Next studio set">→</button><button type="button" class="location-pause" aria-label="Pause studio carousel">Ⅱ</button></div>
+      <p class="location-hint">A new perspective every two seconds · Swipe to explore</p>
     </div>
     <p class="subhead fi">Behind the Scenes</p>
-    <div class="rail-wrap fi">
-      <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
-      <div class="rail">
-        <div class="rcard w-p"><video src="images/studio-cyclorama-white.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Shooting on the white cyclorama"></video><span class="cap">The Cyclorama</span></div>
-        <div class="rcard w-p"><video src="images/studio-blue-setup.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Creative blue-light setup"></video><span class="cap">Creative Lighting</span></div>
-        <div class="rcard w-p"><img src="images/bts-camera-seated.jpg" alt="Framing a seated portrait session on the cyclorama" loading="lazy"><span class="cap">On Set</span></div>
-        <div class="rcard w-w"><img src="images/bts-monitor-standing.jpg" alt="Camera monitor framing a standing portrait" loading="lazy"><span class="cap">On Monitor</span></div>
-        <div class="rcard w-p"><img src="images/bts-5.jpg" alt="Seated client interview under studio lights on the cyclorama" loading="lazy"><span class="cap">Client Session</span></div>
-        <div class="rcard w-p"><img src="images/bts-6.jpg" alt="The team filming a seated client session" loading="lazy"><span class="cap">The Team at Work</span></div>
-        <div class="rcard w-w"><img src="images/bts-camera-crossed.jpg" alt="Adjusting the camera during a studio session" loading="lazy"><span class="cap">In the Details</span></div>
-        <div class="rcard w-p"><img src="images/bts-7.jpg" alt="Camera monitor framing a standing client portrait" loading="lazy"><span class="cap">On Monitor</span></div>
-        <div class="rcard w-p"><img src="images/bts-8.jpg" alt="Client on the cyclorama between takes" loading="lazy"><span class="cap">Between Takes</span></div>
-        <div class="rcard w-p"><img src="images/bts-9.jpg" alt="Photographing a seated client portrait on the cyclorama" loading="lazy"><span class="cap">On Set</span></div>
-      </div>
-      <div class="rprog"><i></i></div>
-    </div>
+    <div class="rail-wrap bts-rail fi">
+      <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous behind the scenes photos">←</button><button class="rnav" data-dir="1" aria-label="Next behind the scenes photos">→</button></div><div class="rail"><div class="rcard w-p"><img src="images/bts-camera-seated.jpg" alt="Camera framing a seated portrait session" loading="lazy"><span class="cap">On the Cyclorama</span></div><div class="rcard w-p"><img src="images/bts-clinic-desk.jpg" alt="Camera setup for a clinic desk interview" loading="lazy"><span class="cap">Clinic Content</span></div><div class="rcard w-p"><video src="images/studio-cyclorama-white.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Shooting on the white cyclorama"></video><span class="cap">The Cyclorama</span></div><div class="rcard w-p"><img src="images/bts-office-wide.jpg" alt="Wide view of an office interview production" loading="lazy"><span class="cap">Office Interview</span></div><div class="rcard w-p"><img src="images/bts-monitor-standing.jpg" alt="Camera monitor framing a standing portrait" loading="lazy"><span class="cap">On Monitor</span></div><div class="rcard w-p"><img src="images/bts-clinic-filming.jpg" alt="Filming a treatment demonstration at the clinic" loading="lazy"><span class="cap">On Location</span></div><div class="rcard w-p"><video src="images/studio-blue-setup.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Creative blue-light studio setup"></video><span class="cap">Creative Lighting</span></div><div class="rcard w-p"><img src="images/bts-clinic-camera.jpg" alt="Production camera during a client session" loading="lazy"><span class="cap">Behind the Camera</span></div><div class="rcard w-p"><img src="images/bts-6.jpg" alt="The team filming a seated client session" loading="lazy"><span class="cap">The Team at Work</span></div></div><div class="rprog"><i></i></div></div>
   </div>
 </section>
 
@@ -822,6 +818,20 @@ if('IntersectionObserver' in window){
  v.addEventListener('playing',function(){if(!mq.matches)box.classList.add('is-playing')});
  v.addEventListener('error',function(){box.classList.remove('is-playing')});
  mq.addEventListener('change',sync);sync();
+})();
+</script>
+
+<script>
+(function(){
+var box=document.querySelector('.location-showcase'),ring=box.querySelector('.location-ring'),cards=Array.from(box.querySelectorAll('.location-card')),index=0,paused=false,visible=false,hover=false,focused=false,timer,mq=matchMedia('(prefers-reduced-motion: reduce)'),pause=box.querySelector('.location-pause');
+function render(){var n=((index%cards.length)+cards.length)%cards.length;ring.style.transform='translateZ(calc(var(--radius)*-1)) rotateY('+(-index*60)+'deg)';cards.forEach(function(c,i){c.classList.toggle('is-active',i===n)});box.querySelector('.location-count').textContent=String(n+1).padStart(2,'0')+' / 06';box.querySelector('.location-title').textContent=cards[n].dataset.title;}
+function start(){clearInterval(timer);if(visible&&!paused&&!hover&&!focused&&!mq.matches&&!document.hidden)timer=setInterval(function(){index++;render()},2000)}
+function step(n){index+=n;render();start()}
+box.querySelector('.location-prev').onclick=function(){step(-1)};box.querySelector('.location-next').onclick=function(){step(1)};
+pause.onclick=function(){paused=!paused;pause.textContent=paused?'▶':'Ⅱ';pause.setAttribute('aria-label',paused?'Play studio carousel':'Pause studio carousel');start()};
+box.addEventListener('mouseenter',function(){if(matchMedia('(hover:hover)').matches){hover=true;start()}});box.addEventListener('mouseleave',function(){hover=false;start()});box.addEventListener('focusin',function(){focused=true;start()});box.addEventListener('focusout',function(e){if(!box.contains(e.relatedTarget)){focused=false;start()}});
+var x=0;box.querySelector('.location-stage').addEventListener('touchstart',function(e){x=e.changedTouches[0].clientX},{passive:true});box.querySelector('.location-stage').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>35)step(dx<0?1:-1)},{passive:true});
+new IntersectionObserver(function(es){visible=es[0].isIntersecting;start()},{threshold:.25}).observe(box);document.addEventListener('visibilitychange',start);mq.addEventListener('change',start);render();
 })();
 </script>
 </body>
