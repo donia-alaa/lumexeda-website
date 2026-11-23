@@ -79,8 +79,11 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(20,20,25,.82);bac
 .hero-shapes .s4{bottom:26%;left:6%;font-size:30px;font-weight:300;color:rgba(244,242,237,.35);animation:floaty 8s ease-in-out infinite 1s}
 .hero-shapes .s5{width:10px;height:10px;border-radius:50%;background:var(--blue-bright);top:22%;left:30%;animation:floaty 7s ease-in-out infinite .5s}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(8deg)}}
-.hero-char{position:absolute;right:5%;bottom:0;width:min(240px,20vw);z-index:1;pointer-events:none;animation:charbob 6s ease-in-out infinite;filter:drop-shadow(0 24px 44px rgba(0,0,0,.5))}
-.hero-char img{width:100%;display:block}
+.hero-char{position:absolute;right:5%;bottom:0;width:min(240px,20vw);z-index:1;pointer-events:none;filter:drop-shadow(0 24px 44px rgba(0,0,0,.5))}
+.hero-char img{width:100%;display:block;transform-origin:50% 100%;animation:charwave 2.6s cubic-bezier(.34,.8,.4,1) 2s 1 both,charbob 6s ease-in-out 4.8s infinite}
+.hero-char .hi{position:absolute;top:-6px;left:-26px;background:#fff;color:var(--ink);font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border-radius:12px 12px 12px 3px;box-shadow:0 10px 26px rgba(0,0,0,.35);white-space:nowrap;opacity:0;transform:translateY(8px) scale(.9);animation:hipop 5.4s ease 2.3s 1 forwards}
+@keyframes hipop{0%{opacity:0;transform:translateY(8px) scale(.9)}7%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+@keyframes charwave{0%,100%{transform:translateY(0) rotate(0)}12%{transform:translateY(-14px) rotate(-3.2deg)}26%{transform:translateY(0) rotate(2.6deg)}40%{transform:translateY(-10px) rotate(-1.8deg)}55%{transform:translateY(0) rotate(0)}}
 @keyframes charbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 .hero-in{position:relative;z-index:2}
 .hero .dots{color:rgba(244,242,237,.6);margin-bottom:44px}
@@ -327,6 +330,18 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   .organic{padding:30px 24px}
   .stats-row{grid-template-columns:1fr 1fr;gap:20px}
 }
+/* ABOUT as BTS backdrop */
+.about-bts{position:relative;overflow:hidden;color:var(--paper)}
+.about-bg{position:absolute;inset:0;background:url('images/bts-about.jpg') center 26%/cover no-repeat;transform:scale(1.05)}
+.about-bts::after{content:"";position:absolute;inset:0;background:linear-gradient(102deg,rgba(20,20,25,.94) 0%,rgba(27,37,101,.86) 46%,rgba(20,20,25,.6) 100%)}
+.about-in{position:relative;z-index:2;max-width:620px}
+.about-in .about-lead{font-size:18px;color:rgba(244,242,237,.88);margin-top:26px}
+.about-in .about-sub{color:rgba(244,242,237,.66);font-size:16px;margin-top:18px}
+.about-in .claim{font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:13px;color:var(--paper);margin-top:36px;display:flex;align-items:center;gap:14px}
+.about-in .claim .box{width:34px;height:34px;background:var(--blue);color:var(--paper);display:grid;place-items:center;font-size:15px}
+a.rcard{display:block;color:inherit;text-decoration:none}
+.dlink{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:inline-block;margin-top:10px;border-bottom:1px solid currentColor;padding-bottom:2px}
+.on-dark .dlink{color:#9FB0FF}
 </style>
 </head>
 <body>
@@ -362,7 +377,7 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   <div class="hero-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="hero-ghost" aria-hidden="true">Lumexeda ✳ Lumexeda ✳ Lumexeda</div>
   <div class="hero-shapes" aria-hidden="true"><span class="s1">✳</span><span class="s2"></span><span class="s3"></span><span class="s4">+</span><span class="s5"></span></div>
-  <div class="hero-char rise d7" aria-hidden="true"><img src="images/char-front.png" alt=""></div>
+  <div class="hero-char rise d7" aria-hidden="true"><span class="hi">Hey there!</span><img src="images/char-front.png" alt=""></div>
   <div class="wrap hero-in">
     <div class="dots rise d1"><i></i><i></i><i></i></div>
     <p class="hero-tag rise d2">Marketing Company &amp; Media Production House</p>
@@ -389,7 +404,7 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
         <p class="kicker on-dark">Shot, edited, published</p>
         <h2 class="sec condensed"><span class="b">Reels</span> &amp;<br>Short-Form</h2>
       </div>
-      <p class="sec-note">A selection of reels we produced for clients across medicine, fashion, real estate, cars and more. Tap any cover to watch.</p>
+      <p class="sec-note">A selection of reels we produced for clients across medicine, fashion, real estate, cars and more. Tap any cover to watch.<br><a class="dlink" href="https://drive.google.com/drive/folders/1xPA2BPpMxkdV_t_3fJOke3bxpVu8gnLv" target="_blank" rel="noopener">Browse all reels on Drive ↗</a></p>
     </div>
     <div class="reel-grid stg">
       <a class="reel" href="https://drive.google.com/file/d/1uCIoKNClPu5SWiLssdjlngXwXjD4ZQwm/view" target="_blank" rel="noopener"><img src="images/reels/reel-01-personal-brand.jpg" alt="Personal brand reel — How do I start in marketing" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Personal Brand — How I started in marketing</span></a>
@@ -408,33 +423,14 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   </div>
 </section>
 
-<section id="about">
-  <div class="wrap about-grid">
-    <div class="about-copy fi">
-      <p class="kicker">Who we are</p>
-      <h2 class="sec condensed"><span class="b">About</span><br>Us <span class="star">✳</span></h2>
-      <p>Lumexeda is a marketing company and media production house. We take your brand from A to Z: branding, copywriting and ideas, content shooting and directing, publishing, then follow-up and analytics — one team, responsible for the whole journey.</p>
-      <p>No face behind the brand: the whole studio stands behind your project. The face up front? That's our character's job — every mood, every mode, always on brand.</p>
-      <div class="claim"><span class="box">✳</span> One partner. All solutions. Strategy to results.</div>
-    </div>
-    <div class="about-visual fi">
-      <div class="frame"></div>
-      <span class="badge">Meet the character</span>
-      <div class="char-stage">
-        <span class="cs-ring" aria-hidden="true"></span>
-        <span class="cs-ast" aria-hidden="true">✳</span>
-        <span class="cs-bubble">Same character,<br>many possibilities.</span>
-        <img class="cs-char" src="images/char-front.png" alt="Lumexeda's virtual brand character — full look">
-        <span class="cs-shadow" aria-hidden="true"></span>
-      </div>
-      <div class="char-moods stg">
-        <figure><img src="images/char-face-happy.jpg" alt="Character expression — happy" loading="lazy"><figcaption>Happy</figcaption></figure>
-        <figure><img src="images/char-face-thinking.jpg" alt="Character expression — thinking" loading="lazy"><figcaption>Thinking</figcaption></figure>
-        <figure><img src="images/char-face-surprised.jpg" alt="Character expression — surprised" loading="lazy"><figcaption>Surprised</figcaption></figure>
-        <figure><img src="images/char-face-confident.jpg" alt="Character expression — confident" loading="lazy"><figcaption>Confident</figcaption></figure>
-      </div>
-      <p class="char-note">Studio mode, creative mode, field mode, presentation mode — one character, wherever the brand goes.</p>
-    </div>
+<section id="about" class="about-bts on-dark">
+  <div class="about-bg" aria-hidden="true"></div>
+  <div class="wrap about-in fi">
+    <p class="kicker on-dark">Who we are</p>
+    <h2 class="sec condensed"><span class="b">About</span><br>Us <span class="star">✳</span></h2>
+    <p class="about-lead">Lumexeda is a marketing company and media production house. We take your brand from A to Z: branding, copywriting and ideas, content shooting and directing, publishing, then follow-up and analytics — one team, responsible for the whole journey.</p>
+    <p class="about-sub">No face behind the brand: the whole studio stands behind your project. The face up front? That's our character's job — every mood, every mode, always on brand.</p>
+    <div class="claim"><span class="box">✳</span> One partner. All solutions. Strategy to results.</div>
   </div>
 </section>
 
@@ -487,6 +483,19 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
           <div class="tlinks">
             <a href="https://donia-alaa-portfolio.vercel.app/" target="_blank" rel="noopener">View Project ↗</a>
           </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">lumexeda-studio.vercel.app</span></div>
+          <img src="images/tech-lumexeda-new.jpg" alt="Lumexeda studio website homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">Studio Website</span>
+          <h3>Lumexeda Studio &amp; Media</h3>
+          <p>Our own home on the web — the site you're on right now, designed and built by Lumexeda.</p>
+          <div class="ttags"><span>Brand</span><span>Web</span><span>This Site</span></div>
+          <div class="tlinks"><a href="https://lumexeda-studio.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
         </div>
       </div>
     </div>
@@ -584,17 +593,18 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
     <div class="client fi">
       <div class="client-head"><span class="idx">01</span><h3>Dr. Menna</h3><span class="tag">Plastic Surgery — Social Media Management</span></div>
       <p class="client-desc">Monthly content plans, reel scripts and Canva-crafted campaign designs for a plastic surgery page — photographed in our studio, published and reported every month.</p>
+      <a class="dlink" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener">See the full project on Drive ↗</a>
       <div class="rail-wrap">
         <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
         <div class="rail">
-          <div class="rcard w-w" style="aspect-ratio:2/1"><img src="images/menna-are-you-ready.jpg" alt="Dr. Menna campaign design — Are you Ready" loading="lazy"><span class="cap">Campaign Design</span></div>
-          <div class="rcard w-p"><img src="images/menna-services-poster.jpg" alt="Dr. Menna services poster — plastic and aesthetic surgeon" loading="lazy"><span class="cap">Services Poster</span></div>
-          <div class="rcard w-p"><img src="images/menna-name-portrait.jpg" alt="Dr. Menna portrait design" loading="lazy"><span class="cap">Portrait Design</span></div>
-          <div class="rcard w-p"><img src="images/menna-seated-intro.jpg" alt="Dr. Menna seated introduction design" loading="lazy"><span class="cap">Introduction Design</span></div>
-          <div class="rcard w-p"><img src="images/menna-expert-series.jpg" alt="The Expert Series carousel — opening slide" loading="lazy"><span class="cap">The Expert Series 01</span></div>
-          <div class="rcard w-p"><img src="images/menna-about-her.jpg" alt="About her carousel slide" loading="lazy"><span class="cap">The Expert Series 02</span></div>
-          <div class="rcard w-p"><img src="images/menna-specialties.jpg" alt="Her specialties carousel slide" loading="lazy"><span class="cap">The Expert Series 03</span></div>
-          <div class="rcard w-p"><img src="images/menna-shoot-composition.jpg" alt="Photoshoot composition from the studio session" loading="lazy"><span class="cap">Studio Composition</span></div>
+          <a class="rcard w-w" style="aspect-ratio:2/1" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-are-you-ready.jpg" alt="Dr. Menna campaign design — Are you Ready" loading="lazy"><span class="cap">Campaign Design</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-services-poster.jpg" alt="Dr. Menna services poster — plastic and aesthetic surgeon" loading="lazy"><span class="cap">Services Poster</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-name-portrait.jpg" alt="Dr. Menna portrait design" loading="lazy"><span class="cap">Portrait Design</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-seated-intro.jpg" alt="Dr. Menna seated introduction design" loading="lazy"><span class="cap">Introduction Design</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-expert-series.jpg" alt="The Expert Series carousel — opening slide" loading="lazy"><span class="cap">The Expert Series 01</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-about-her.jpg" alt="About her carousel slide" loading="lazy"><span class="cap">The Expert Series 02</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-specialties.jpg" alt="Her specialties carousel slide" loading="lazy"><span class="cap">The Expert Series 03</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-shoot-composition.jpg" alt="Photoshoot composition from the studio session" loading="lazy"><span class="cap">Studio Composition</span></a>
         </div>
         <div class="rprog"><i></i></div>
       </div>
@@ -603,20 +613,21 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
     <div class="client fi">
       <div class="client-head"><span class="idx">02</span><h3>Ahmed Farrag</h3><span class="tag">In Out Studio — Personal Brand Designs</span></div>
       <p class="client-desc">A founder-led personal brand for the architect behind In Out Studio — from the pre-shoot content direction and moodboards to a complete social media design system of founder portraits, campaign posts and brand statements.</p>
+      <a class="dlink" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener">See the full project on Drive ↗</a>
       <div class="rail-wrap">
         <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
         <div class="rail">
-          <div class="rcard w-b contain"><img src="images/work-farag-moodboard-dark.jpg" alt="InOut Studio visual content moodboard — dark version, full content direction" loading="lazy"><span class="cap">Content Direction — Dark</span></div>
-          <div class="rcard w-b contain-light"><img src="images/work-farag-moodboard-light.jpg" alt="InOut Studio visual content moodboard — light version" loading="lazy"><span class="cap">Content Direction — Light</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-1.jpg" alt="Ahmed Farrag — blue-lit founder portrait, Designing Spaces that Reflect You" loading="lazy"><span class="cap">Brand Campaign</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-2.jpg" alt="Ahmed Farrag — From Vision to Reality, beige suit portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-3.jpg" alt="Ahmed Farrag — From Vision to Reality, dark portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-4.jpg" alt="Ahmed Farrag — A Signature in Every Space" loading="lazy"><span class="cap">A Signature in Every Space</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-5.jpg" alt="Ahmed Farrag — black and white founder portrait" loading="lazy"><span class="cap">Founder &amp; CEO</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-6.jpg" alt="Ahmed Farrag — Spaces designed for a better tomorrow" loading="lazy"><span class="cap">A Better Tomorrow</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-7.jpg" alt="Ahmed Farrag — A Vision. A Signature." loading="lazy"><span class="cap">A Vision. A Signature.</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-8.jpg" alt="Ahmed Farrag — Architecture and interior design created for people" loading="lazy"><span class="cap">Created for People</span></div>
-          <div class="rcard w-p contain"><img src="images/work-farag-9.jpg" alt="Ahmed Farrag — Design with Purpose, double-exposure portrait" loading="lazy"><span class="cap">Design with Purpose</span></div>
+          <a class="rcard w-b contain" href="https://drive.google.com/file/d/1m2MEYWQXOxRKUS8Dk6OQW-N8DCYJdxJE/view" target="_blank" rel="noopener"><img src="images/work-farag-moodboard-dark.jpg" alt="InOut Studio visual content moodboard — dark version, full content direction" loading="lazy"><span class="cap">Content Direction — Dark</span></a>
+          <a class="rcard w-b contain-light" href="https://drive.google.com/file/d/1m2MEYWQXOxRKUS8Dk6OQW-N8DCYJdxJE/view" target="_blank" rel="noopener"><img src="images/work-farag-moodboard-light.jpg" alt="InOut Studio visual content moodboard — light version" loading="lazy"><span class="cap">Content Direction — Light</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-1.jpg" alt="Ahmed Farrag — blue-lit founder portrait, Designing Spaces that Reflect You" loading="lazy"><span class="cap">Brand Campaign</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-2.jpg" alt="Ahmed Farrag — From Vision to Reality, beige suit portrait" loading="lazy"><span class="cap">Vision to Reality</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-3.jpg" alt="Ahmed Farrag — From Vision to Reality, dark portrait" loading="lazy"><span class="cap">Vision to Reality</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-4.jpg" alt="Ahmed Farrag — A Signature in Every Space" loading="lazy"><span class="cap">A Signature in Every Space</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-5.jpg" alt="Ahmed Farrag — black and white founder portrait" loading="lazy"><span class="cap">Founder &amp; CEO</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-6.jpg" alt="Ahmed Farrag — Spaces designed for a better tomorrow" loading="lazy"><span class="cap">A Better Tomorrow</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-7.jpg" alt="Ahmed Farrag — A Vision. A Signature." loading="lazy"><span class="cap">A Vision. A Signature.</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-8.jpg" alt="Ahmed Farrag — Architecture and interior design created for people" loading="lazy"><span class="cap">Created for People</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-9.jpg" alt="Ahmed Farrag — Design with Purpose, double-exposure portrait" loading="lazy"><span class="cap">Design with Purpose</span></a>
         </div>
         <div class="rprog"><i></i></div>
       </div>
@@ -628,10 +639,10 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <div class="rail-wrap">
         <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
         <div class="rail">
-          <div class="rcard w-w"><img src="images/work-mai-positioning.jpg" alt="Mai Abdelhafez strategy — positioning from portfolio to design authority" loading="lazy"><span class="cap">Positioning Strategy</span></div>
-          <div class="rcard w-w"><img src="images/work-mai-roadmap.jpg" alt="Three-month content roadmap — foundation, authority, conversion" loading="lazy"><span class="cap">3-Month Roadmap</span></div>
-          <div class="rcard w-w"><img src="images/work-mai-grid-1.jpg" alt="Month one feed-grid reference from the 24-piece content bank" loading="lazy"><span class="cap">Month 01 Feed Grid</span></div>
-          <div class="rcard w-w"><img src="images/work-mai-grid-2.jpg" alt="Month two feed-grid reference" loading="lazy"><span class="cap">Month 02 Feed Grid</span></div>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1Oh8812MhRZpWFm8LHsOzQo3U0QGqivhl/view" target="_blank" rel="noopener"><img src="images/work-mai-positioning.jpg" alt="Mai Abdelhafez strategy — positioning from portfolio to design authority" loading="lazy"><span class="cap">Positioning Strategy</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1Oh8812MhRZpWFm8LHsOzQo3U0QGqivhl/view" target="_blank" rel="noopener"><img src="images/work-mai-roadmap.jpg" alt="Three-month content roadmap — foundation, authority, conversion" loading="lazy"><span class="cap">3-Month Roadmap</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/16LP-9E2mOv7nkRhRU3ClQ2bKR-BcIEJp/view" target="_blank" rel="noopener"><img src="images/work-mai-grid-1.jpg" alt="Month one feed-grid reference from the 24-piece content bank" loading="lazy"><span class="cap">Month 01 Feed Grid</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/16LP-9E2mOv7nkRhRU3ClQ2bKR-BcIEJp/view" target="_blank" rel="noopener"><img src="images/work-mai-grid-2.jpg" alt="Month two feed-grid reference" loading="lazy"><span class="cap">Month 02 Feed Grid</span></a>
         </div>
         <div class="rprog"><i></i></div>
       </div>
@@ -656,8 +667,8 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <div class="rail-wrap">
         <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
         <div class="rail">
-          <div class="rcard w-w"><img src="images/work-lucin-pillars.jpg" alt="Lucin — eight content pillars" loading="lazy"><span class="cap">Content Pillars</span></div>
-          <div class="rcard w-w"><img src="images/work-lucin-plan.jpg" alt="Lucin — proposed 30-day content plan" loading="lazy"><span class="cap">30-Day Plan</span></div>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1KNLYfEc48OwuQD4vneCrcyIHQORT2evV/view" target="_blank" rel="noopener"><img src="images/work-lucin-pillars.jpg" alt="Lucin — eight content pillars" loading="lazy"><span class="cap">Content Pillars</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1KNLYfEc48OwuQD4vneCrcyIHQORT2evV/view" target="_blank" rel="noopener"><img src="images/work-lucin-plan.jpg" alt="Lucin — proposed 30-day content plan" loading="lazy"><span class="cap">30-Day Plan</span></a>
         </div>
         <div class="rprog"><i></i></div>
       </div>
@@ -671,7 +682,7 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
         <p class="kicker">Proof, not promises</p>
         <h2 class="sec condensed"><span class="b">Results</span><br>That Speak</h2>
       </div>
-      <p class="sec-note">Real account insights from a managed client page — steady growth in reach, engagement and bookings, tracked and reported every month.</p>
+      <p class="sec-note">Real numbers from a managed client page — steady growth in reach, engagement and bookings, tracked and reported every month.</p>
     </div>
     <div class="organic fi">
       <div class="big">No Paid Ads.<br><span>Real Results.</span></div>
@@ -682,10 +693,6 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <div class="stat"><div class="n"><span class="u">+</span><span class="cnt" data-n="184">0</span></div><div class="l">Net followers<br>in 30 days</div></div>
       <div class="stat"><div class="n"><span class="cnt" data-n="127661">0</span></div><div class="l">Views in 90 days<br>+16.2% followers</div></div>
       <div class="stat"><div class="n"><span class="cnt" data-n="0">0</span> <span class="u">EGP</span></div><div class="l">Spent on ads<br>all organic</div></div>
-    </div>
-    <div class="results-grid fi" style="margin-top:46px">
-      <img src="images/results-30d.jpg" alt="30-day account insights for a managed client page" loading="lazy">
-      <img src="images/results-90d.jpg" alt="90-day account insights for a managed client page" loading="lazy">
     </div>
   </div>
 </section>
@@ -723,6 +730,7 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <a class="cline" href="https://www.facebook.com/share/1PmubSH96R/?mibextid=wwXIfr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>Facebook</a>
       <a class="cline" href="https://www.tiktok.com/@lumexeda1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>TikTok</a>
       <a class="cline" href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Studio Location</a>
+      <a class="cline" href="mailto:lumexeda@gmail.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>lumexeda@gmail.com</a>
     </div>
   </div>
 </section>
@@ -743,6 +751,7 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <a href="https://www.tiktok.com/@lumexeda1" target="_blank" rel="noopener" aria-label="Lumexeda on TikTok"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
       <a href="https://wa.me/201140859638" target="_blank" rel="noopener" aria-label="Lumexeda on WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/></svg></a>
       <a href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener" aria-label="Lumexeda studio location"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
+      <a href="mailto:lumexeda@gmail.com" aria-label="Email Lumexeda"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a>
     </div>
     <small>© 2026 Lumexeda Studio &amp; Media</small>
   </div>
