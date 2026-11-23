@@ -63,6 +63,25 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(20,20,25,.82);bac
 .hero::after{content:"";position:absolute;width:700px;height:700px;left:-280px;bottom:-320px;background:radial-gradient(circle,rgba(27,37,101,.5),transparent 60%);pointer-events:none;animation:drift 18s ease-in-out infinite alternate-reverse}
 @keyframes drift{to{transform:translate(60px,40px) scale(1.06)}}
 .hero-grid-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(244,242,237,.13) 1px,transparent 1px);background-size:26px 26px;mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 0%,transparent 70%)}
+.hero-aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-aurora i{position:absolute;border-radius:50%;filter:blur(90px);mix-blend-mode:screen}
+.hero-aurora i:nth-child(1){width:640px;height:640px;right:-140px;top:-180px;background:radial-gradient(circle,rgba(58,84,220,.55),transparent 65%);animation:aur1 16s ease-in-out infinite alternate}
+.hero-aurora i:nth-child(2){width:520px;height:520px;left:-180px;bottom:-200px;background:radial-gradient(circle,rgba(96,84,220,.4),transparent 65%);animation:aur2 20s ease-in-out infinite alternate}
+.hero-aurora i:nth-child(3){width:420px;height:420px;right:16%;bottom:-160px;background:radial-gradient(circle,rgba(64,150,255,.3),transparent 65%);animation:aur1 24s ease-in-out infinite alternate-reverse}
+@keyframes aur1{to{transform:translate(-70px,60px) scale(1.15)}}
+@keyframes aur2{to{transform:translate(90px,-50px) scale(1.1)}}
+.hero-ghost{position:absolute;top:6%;left:-4%;font-family:'Poppins',sans-serif;font-weight:700;font-size:17vw;line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(244,242,237,.08);pointer-events:none;animation:ghost 36s linear infinite alternate}
+@keyframes ghost{to{transform:translateX(-9%)}}
+.hero-shapes span{position:absolute;pointer-events:none;color:rgba(159,176,255,.5)}
+.hero-shapes .s1{top:16%;right:12%;font-size:44px;animation:spin 22s linear infinite}
+.hero-shapes .s2{width:90px;height:90px;border:1px solid rgba(159,176,255,.35);border-radius:50%;top:58%;right:6%;animation:floaty 9s ease-in-out infinite}
+.hero-shapes .s3{width:56px;height:56px;border:1px solid rgba(244,242,237,.22);top:30%;left:44%;transform:rotate(18deg);animation:floaty 11s ease-in-out infinite reverse}
+.hero-shapes .s4{bottom:26%;left:6%;font-size:30px;font-weight:300;color:rgba(244,242,237,.35);animation:floaty 8s ease-in-out infinite 1s}
+.hero-shapes .s5{width:10px;height:10px;border-radius:50%;background:var(--blue-bright);top:22%;left:30%;animation:floaty 7s ease-in-out infinite .5s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(8deg)}}
+.hero-char{position:absolute;right:5%;bottom:0;width:min(240px,20vw);z-index:1;pointer-events:none;animation:charbob 6s ease-in-out infinite;filter:drop-shadow(0 24px 44px rgba(0,0,0,.5))}
+.hero-char img{width:100%;display:block}
+@keyframes charbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 .hero-in{position:relative;z-index:2}
 .hero .dots{color:rgba(244,242,237,.6);margin-bottom:44px}
 .hero-tag{font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.5em;text-transform:uppercase;font-size:13px;color:rgba(244,242,237,.65);margin-bottom:26px}
@@ -78,6 +97,7 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(20,20,25,.82);bac
 .js .rise{opacity:0;transform:translateY(34px);animation:rise .9s cubic-bezier(.2,.6,.2,1) forwards}
 .js .rise.d1{animation-delay:.08s}.js .rise.d2{animation-delay:.2s}.js .rise.d3{animation-delay:.34s}
 .js .rise.d4{animation-delay:.48s}.js .rise.d5{animation-delay:.62s}.js .rise.d6{animation-delay:.78s}
+.js .rise.d7{animation-delay:.95s}
 @keyframes rise{to{opacity:1;transform:none}}
 /* marquee */
 .marquee{position:relative;z-index:2;margin-top:84px;border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);overflow:hidden;padding:16px 0}
@@ -96,10 +116,21 @@ section{padding:96px 0}
 .about-copy .claim{font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:13px;color:var(--navy);margin-top:36px;display:flex;align-items:center;gap:14px}
 .about-copy .claim .box{width:34px;height:34px;background:var(--navy);color:var(--paper);display:grid;place-items:center;font-size:15px}
 .about-visual{position:relative}
-.about-visual img{border-radius:18px;box-shadow:0 30px 70px rgba(20,20,25,.18);transition:transform .6s cubic-bezier(.2,.6,.2,1)}
-.about-visual:hover img{transform:translateY(-6px) rotate(-.6deg)}
 .about-visual .frame{position:absolute;inset:-18px 18px 18px -18px;border:1px solid var(--navy);border-radius:20px;z-index:-1}
-.about-visual .badge{position:absolute;right:-14px;top:-14px;background:var(--navy);color:var(--paper);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:10px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(27,37,101,.4)}
+.about-visual .badge{position:absolute;right:-14px;top:-14px;background:var(--navy);color:var(--paper);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:10px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(27,37,101,.4);z-index:3}
+.char-stage{position:relative;background:linear-gradient(160deg,#232f7a,#1B2565 55%,#141433);border-radius:18px;box-shadow:0 30px 70px rgba(20,20,25,.18);aspect-ratio:5/6;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.cs-ring{position:absolute;width:120%;aspect-ratio:1;border:1px dashed rgba(159,176,255,.35);border-radius:50%;left:-10%;top:-24%;animation:spin 40s linear infinite}
+.cs-ast{position:absolute;left:8%;top:10%;font-size:34px;color:var(--blue-bright);animation:floaty 8s ease-in-out infinite}
+.cs-bubble{position:absolute;right:7%;top:9%;background:var(--paper);color:var(--ink);font-family:'Oswald',sans-serif;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1.5;padding:12px 16px;border-radius:14px 14px 2px 14px;box-shadow:0 12px 30px rgba(0,0,0,.25);animation:charbob 5s ease-in-out infinite .6s;z-index:2}
+.cs-char{position:relative;z-index:1;width:62%;animation:charbob 6s ease-in-out infinite}
+.cs-shadow{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);width:52%;height:16px;background:radial-gradient(ellipse,rgba(0,0,0,.45),transparent 70%);border-radius:50%;animation:shadowpulse 6s ease-in-out infinite}
+@keyframes shadowpulse{0%,100%{transform:translateX(-50%) scaleX(1)}50%{transform:translateX(-50%) scaleX(.82)}}
+.char-moods{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.char-moods figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.char-moods figure:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 16px 34px rgba(20,20,25,.14)}
+.char-moods img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.char-moods figcaption{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);text-align:center;padding:8px 0}
+.char-note{margin-top:14px;font-size:13px;color:rgba(20,20,25,.55);text-align:center}
 /* TECH / DIGITAL PRODUCTS */
 .tech{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
 .tech::before{content:"";position:absolute;width:760px;height:760px;left:-300px;top:-300px;background:radial-gradient(circle,rgba(46,69,184,.28),transparent 62%);pointer-events:none}
@@ -234,6 +265,16 @@ section{padding:96px 0}
 /* FOOTER */
 footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid var(--line-light);padding:34px 0}
 .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot .fs{display:flex;gap:10px}
+.foot .fs a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line-light);border-radius:50%;transition:border-color .25s,transform .25s}
+.foot .fs a:hover{border-color:var(--blue-bright);transform:translateY(-3px)}
+.foot .fs svg{width:15px;height:15px;stroke:rgba(244,242,237,.75);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* floating WhatsApp */
+.wa-float{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;z-index:60;box-shadow:0 12px 30px rgba(37,211,102,.4);transition:transform .25s}
+.wa-float:hover{transform:translateY(-4px) scale(1.06)}
+.wa-float::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.55);animation:wapulse 2.2s ease-out infinite}
+@keyframes wapulse{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.45);opacity:0}}
+.wa-float svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .foot img{height:40px;width:40px;object-fit:contain;background:var(--paper);border-radius:8px;padding:3px}
 .foot small{font-size:12.5px;letter-spacing:.06em}
 .foot .fl{display:flex;gap:22px;font-family:'Oswald',sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase}
@@ -260,6 +301,8 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   .reel-grid{grid-template-columns:repeat(4,1fr)}
   .about-grid,.studio-intro{grid-template-columns:1fr;gap:44px}
   .stats-row{grid-template-columns:repeat(2,1fr)}
+  .hero-char{width:170px;right:4%}
+  .hero-ghost{font-size:24vw}
 }
 @media (max-width:760px){
   .wrap{padding:0 20px}
@@ -267,6 +310,9 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   .nav-links,.btn-nav{display:none}
   .burger{display:flex}
   .svc-grid{grid-template-columns:1fr}
+  .hero-char{display:none}
+  .hero-shapes .s2,.hero-shapes .s3{display:none}
+  .wa-float{bottom:16px;right:16px;width:52px;height:52px}
   .goals-grid{grid-template-columns:repeat(2,1fr)}
   .reel-grid{grid-template-columns:repeat(3,1fr);gap:10px}
   .results-grid,.testi-grid,.tech-grid{grid-template-columns:1fr}
@@ -312,12 +358,16 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
 
 <header class="hero" id="top">
   <div class="hero-grid-bg"></div>
+  <div class="hero-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hero-ghost" aria-hidden="true">Lumexeda ✳ Lumexeda ✳ Lumexeda</div>
+  <div class="hero-shapes" aria-hidden="true"><span class="s1">✳</span><span class="s2"></span><span class="s3"></span><span class="s4">+</span><span class="s5"></span></div>
+  <div class="hero-char rise d7" aria-hidden="true"><img src="images/char-front.png" alt=""></div>
   <div class="wrap hero-in">
     <div class="dots rise d1"><i></i><i></i><i></i></div>
-    <p class="hero-tag rise d2">Full-Service Creative Studio</p>
+    <p class="hero-tag rise d2">Marketing Company &amp; Media Production House</p>
     <h1 class="hero-logo rise d3"><span class="b">Lume</span><span class="x">x</span>eda<span class="ast">✳</span></h1>
     <p class="hero-sub rise d4">Studio &amp; Media</p>
-    <p class="hero-copy rise d5">We help brands grow with strategy, creative content and smart solutions — from the first idea to production, publishing and reporting. One partner. All solutions.</p>
+    <p class="hero-copy rise d5">We own your brand from A to Z — branding, copywriting and ideas, content shooting and directing, publishing, and the follow-up that keeps it growing. One partner. All solutions.</p>
     <div class="hero-cta rise d6">
       <a class="btn btn-navy" href="https://wa.me/201140859638" target="_blank" rel="noopener">Start a Project</a>
       <a class="btn btn-ghost" href="#reels">See Our Work</a>
@@ -325,8 +375,8 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
   </div>
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
-      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
+      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Copywriting &amp; Scripts <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Shooting &amp; Directing <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Publishing <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
+      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Copywriting &amp; Scripts <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Shooting &amp; Directing <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Publishing <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
     </div>
   </div>
 </header>
@@ -362,14 +412,27 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
     <div class="about-copy fi">
       <p class="kicker">Who we are</p>
       <h2 class="sec condensed"><span class="b">About</span><br>Us <span class="star">✳</span></h2>
-      <p>Lumexeda is a full-service creative studio — a team of strategists, designers, shooters and editors helping brands build a strong online presence through strategy, content and design that connects and converts.</p>
-      <p>From the first competitor study to the monthly report, everything your brand needs lives under one roof — planned, produced, published and measured by one team. No face behind the brand: the whole studio stands behind your project.</p>
+      <p>Lumexeda is a marketing company and media production house. We take your brand from A to Z: branding, copywriting and ideas, content shooting and directing, publishing, then follow-up and analytics — one team, responsible for the whole journey.</p>
+      <p>No face behind the brand: the whole studio stands behind your project. The face up front? That's our character's job — every mood, every mode, always on brand.</p>
       <div class="claim"><span class="box">✳</span> One partner. All solutions. Strategy to results.</div>
     </div>
     <div class="about-visual fi">
       <div class="frame"></div>
       <span class="badge">Meet the character</span>
-      <img src="images/character-sheet.jpg" alt="The Lumexeda virtual brand character — character sheet with turnaround, expressions and modes" loading="lazy">
+      <div class="char-stage">
+        <span class="cs-ring" aria-hidden="true"></span>
+        <span class="cs-ast" aria-hidden="true">✳</span>
+        <span class="cs-bubble">Same character,<br>many possibilities.</span>
+        <img class="cs-char" src="images/char-front.png" alt="Lumexeda's virtual brand character — full look">
+        <span class="cs-shadow" aria-hidden="true"></span>
+      </div>
+      <div class="char-moods stg">
+        <figure><img src="images/char-face-happy.jpg" alt="Character expression — happy" loading="lazy"><figcaption>Happy</figcaption></figure>
+        <figure><img src="images/char-face-thinking.jpg" alt="Character expression — thinking" loading="lazy"><figcaption>Thinking</figcaption></figure>
+        <figure><img src="images/char-face-surprised.jpg" alt="Character expression — surprised" loading="lazy"><figcaption>Surprised</figcaption></figure>
+        <figure><img src="images/char-face-confident.jpg" alt="Character expression — confident" loading="lazy"><figcaption>Confident</figcaption></figure>
+      </div>
+      <p class="char-note">Studio mode, creative mode, field mode, presentation mode — one character, wherever the brand goes.</p>
     </div>
   </div>
 </section>
@@ -419,24 +482,10 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
           <span class="tlabel">Portfolio</span>
           <h3>Donia Alaa Portfolio</h3>
           <p>A social media strategist's portfolio — case studies, reels and studio work.</p>
-          <div class="ttags"><span>Portfolio</span><span>Vercel</span><span>GitHub</span></div>
+          <div class="ttags"><span>Portfolio</span><span>Vercel</span></div>
           <div class="tlinks">
             <a href="https://donia-alaa-portfolio.vercel.app/" target="_blank" rel="noopener">View Project ↗</a>
-            <a href="https://github.com/donia-alaa/donia-alaa-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
-        </div>
-      </div>
-      <div class="tcard">
-        <div class="tshot">
-          <div class="tbar"><i></i><i></i><i></i><span class="url">lumexeda.vercel.app</span></div>
-          <img src="images/tech-lumexeda-v1.jpg" alt="Lumexeda first website homepage" loading="lazy">
-        </div>
-        <div class="tbody">
-          <span class="tlabel">Flagship</span>
-          <h3>Lumexeda — V1</h3>
-          <p>Creative direction, UI/UX, frontend &amp; motion digital experience. Our first home — the one you're on now is its successor.</p>
-          <div class="ttags"><span>Frontend</span><span>Motion</span><span>UX</span></div>
-          <div class="tlinks"><a href="https://lumexeda.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
         </div>
       </div>
     </div>
@@ -496,10 +545,10 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
         <p class="kicker">What we do</p>
         <h2 class="sec condensed"><span class="b">Our</span> Services</h2>
       </div>
-      <p class="sec-note">Eight services, one team. Everything a brand needs to show up, stand out and grow online.</p>
+      <p class="sec-note">From branding and scripts to shooting, directing, publishing and analytics — we own your brand end to end.</p>
     </div>
     <div class="svc-grid stg">
-      <div class="svc"><span class="num">01</span><svg viewBox="0 0 24 24"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3"/></svg><h3>Professional Production</h3><p>Full studio setup with professional cameras, lighting &amp; audio. On-location or in-studio.</p></div>
+      <div class="svc"><span class="num">01</span><svg viewBox="0 0 24 24"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3"/></svg><h3>Professional Production</h3><p>Full studio setup with professional cameras, lighting &amp; audio — shot and directed in-studio or on location.</p></div>
       <div class="svc"><span class="num">02</span><svg viewBox="0 0 24 24"><path d="M12 19l7-7a4.95 4.95 0 10-7-7l-7 7 7 7z"/><path d="M9 8l6 6"/><circle cx="12" cy="12" r="1"/></svg><h3>Brand Identity</h3><p>Logo design, brand guidelines, visual identity and complete brand styling.</p></div>
       <div class="svc"><span class="num">03</span><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg><h3>Social Media Management</h3><p>Complete page management to grow your brand and engage your audience.</p></div>
       <div class="svc"><span class="num">04</span><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h3>Social Media Designs</h3><p>Eye-catching, on-brand designs for posts, stories, ads and more.</p></div>
@@ -665,12 +714,13 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
     <span class="spaced">One partner. All solutions.</span>
     <div class="contact-cta">
       <a class="btn btn-navy" href="https://wa.me/201140859638" target="_blank" rel="noopener">WhatsApp Us</a>
-      <a class="btn btn-ghost" href="mailto:doniaalaa5720@gmail.com">Send an Email</a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/lumexeda" target="_blank" rel="noopener">Follow @lumexeda</a>
     </div>
     <div class="contact-lines">
       <a class="cline" href="https://wa.me/201140859638" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/></svg>+20 114 085 9638</a>
-      <a class="cline" href="mailto:doniaalaa5720@gmail.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>doniaalaa5720@gmail.com</a>
-      <a class="cline" href="https://instagram.com/lumexeda" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><path d="M17.5 6.5h.01"/></svg>@lumexeda</a>
+      <a class="cline" href="https://www.instagram.com/lumexeda" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><path d="M17.5 6.5h.01"/></svg>Instagram</a>
+      <a class="cline" href="https://www.facebook.com/share/1PmubSH96R/?mibextid=wwXIfr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>Facebook</a>
+      <a class="cline" href="https://www.tiktok.com/@lumexeda1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>TikTok</a>
       <a class="cline" href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Studio Location</a>
     </div>
   </div>
@@ -686,9 +736,18 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <a href="#studio">Studio</a>
       <a href="#work">Work</a>
     </div>
+    <div class="fs">
+      <a href="https://www.instagram.com/lumexeda" target="_blank" rel="noopener" aria-label="Lumexeda on Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><path d="M17.5 6.5h.01"/></svg></a>
+      <a href="https://www.facebook.com/share/1PmubSH96R/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Lumexeda on Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="https://www.tiktok.com/@lumexeda1" target="_blank" rel="noopener" aria-label="Lumexeda on TikTok"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
+      <a href="https://wa.me/201140859638" target="_blank" rel="noopener" aria-label="Lumexeda on WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/></svg></a>
+      <a href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener" aria-label="Lumexeda studio location"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
+    </div>
     <small>© 2026 Lumexeda Studio &amp; Media</small>
   </div>
 </footer>
+
+<a class="wa-float" href="https://wa.me/201140859638" target="_blank" rel="noopener" aria-label="Chat with Lumexeda on WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/></svg></a>
 
 <script>
 var b=document.getElementById('burger'),m=document.getElementById('mmenu');
