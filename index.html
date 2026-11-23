@@ -114,11 +114,12 @@ section{padding:110px 0}
 .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
 .wcard{position:relative;border-radius:14px;overflow:hidden;background:var(--paper-2)}
 .wcard img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+.wcard.contain img{object-fit:contain;background:#101014}
 .wcard:hover img{transform:scale(1.045)}
 .wcard .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;background:linear-gradient(transparent,rgba(20,20,25,.82));color:var(--paper);font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:0;transition:opacity .3s}
 .wcard:hover .cap{opacity:1}
 .span6{grid-column:span 6}.span5{grid-column:span 5}.span7{grid-column:span 7}.span4{grid-column:span 4}.span8{grid-column:span 8}.span3{grid-column:span 3}.span2{grid-column:span 2}.span12{grid-column:span 12}
-.r43{aspect-ratio:4/3}.r11{aspect-ratio:1/1}.r34{aspect-ratio:3/4}.r169{aspect-ratio:16/9}.r21{aspect-ratio:2/1}
+.r43{aspect-ratio:4/3}.r45{aspect-ratio:4/5}.r11{aspect-ratio:1/1}.r34{aspect-ratio:3/4}.r169{aspect-ratio:16/9}.r21{aspect-ratio:2/1}
 .wcard video{width:100%;height:100%;object-fit:cover;display:block}
 .subhead{font-family:'Oswald',sans-serif;font-weight:400;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);margin:44px 0 18px;display:flex;align-items:center;gap:14px}
 .subhead::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -391,15 +392,15 @@ footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid va
       <div class="client-head"><span class="idx">04</span><h3>Ahmed Farrag</h3><span class="tag">In Out Studio — Personal Brand Designs</span></div>
       <p class="client-desc">A founder-led personal brand for the architect behind In Out Studio: a complete social media design system of founder portraits, campaign posts and brand statements.</p>
       <div class="work-grid">
-        <div class="wcard span4 r34"><img src="images/work-farag-1.jpg" alt="Ahmed Farrag — blue-lit founder portrait, Designing Spaces that Reflect You" loading="lazy"><span class="cap">Brand Campaign</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-2.jpg" alt="Ahmed Farrag — From Vision to Reality, beige suit portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-3.jpg" alt="Ahmed Farrag — From Vision to Reality, dark portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-4.jpg" alt="Ahmed Farrag — A Signature in Every Space" loading="lazy"><span class="cap">A Signature in Every Space</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-5.jpg" alt="Ahmed Farrag — black and white founder portrait" loading="lazy"><span class="cap">Founder &amp; CEO</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-6.jpg" alt="Ahmed Farrag — Spaces designed for a better tomorrow" loading="lazy"><span class="cap">A Better Tomorrow</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-7.jpg" alt="Ahmed Farrag — A Vision. A Signature." loading="lazy"><span class="cap">A Vision. A Signature.</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-8.jpg" alt="Ahmed Farrag — Architecture and interior design created for people" loading="lazy"><span class="cap">Created for People</span></div>
-        <div class="wcard span4 r34"><img src="images/work-farag-9.jpg" alt="Ahmed Farrag — Design with Purpose, double-exposure portrait" loading="lazy"><span class="cap">Design with Purpose</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-1.jpg" alt="Ahmed Farrag — blue-lit founder portrait, Designing Spaces that Reflect You" loading="lazy"><span class="cap">Brand Campaign</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-2.jpg" alt="Ahmed Farrag — From Vision to Reality, beige suit portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-3.jpg" alt="Ahmed Farrag — From Vision to Reality, dark portrait" loading="lazy"><span class="cap">Vision to Reality</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-4.jpg" alt="Ahmed Farrag — A Signature in Every Space" loading="lazy"><span class="cap">A Signature in Every Space</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-5.jpg" alt="Ahmed Farrag — black and white founder portrait" loading="lazy"><span class="cap">Founder &amp; CEO</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-6.jpg" alt="Ahmed Farrag — Spaces designed for a better tomorrow" loading="lazy"><span class="cap">A Better Tomorrow</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-7.jpg" alt="Ahmed Farrag — A Vision. A Signature." loading="lazy"><span class="cap">A Vision. A Signature.</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-8.jpg" alt="Ahmed Farrag — Architecture and interior design created for people" loading="lazy"><span class="cap">Created for People</span></div>
+        <div class="wcard span4 r45 contain"><img src="images/work-farag-9.jpg" alt="Ahmed Farrag — Design with Purpose, double-exposure portrait" loading="lazy"><span class="cap">Design with Purpose</span></div>
       </div>
     </div>
 
