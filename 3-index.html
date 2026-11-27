@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumexeda | Studio &amp; Media</title>
+<meta name="description" content="Lumexeda Studio & Media — a full-service creative studio. Production, brand identity, social media management, content strategy, reels, websites and analytics. One partner. All solutions.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500&family=Archivo:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2565; --navy-deep:#131B47; --blue:#2E45B8; --blue-bright:#3D5BFF;
+  --ink:#141419; --ink-2:#1C1C23; --paper:#F4F2ED; --paper-2:#ECE9E1;
+  --line:rgba(20,20,25,.14); --line-light:rgba(244,242,237,.16);
+  --grad:linear-gradient(100deg,#2E45B8 0%,#3D5BFF 55%,#7A93FF 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Archivo',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.condensed{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.01em}
+.spaced{font-family:'Oswald',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.42em}
+.kicker{font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.42em;font-size:12px;color:var(--blue);display:flex;align-items:center;gap:14px}
+.kicker::before{content:"";width:34px;height:1px;background:var(--blue);transform-origin:left;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+.kicker.on-dark{color:#9FB0FF}.kicker.on-dark::before{background:#9FB0FF}
+.star{color:var(--blue);font-family:'Archivo',sans-serif}
+h2.sec{font-size:clamp(44px,6.4vw,92px);margin:18px 0 0}
+h2.sec .b{color:var(--navy)}
+.on-dark h2.sec{color:var(--paper)}
+.on-dark h2.sec .b{color:#7A93FF}
+.dots{display:flex;gap:7px}
+.dots i{width:5px;height:5px;border-radius:50%;background:currentColor;display:block}
+/* ---------- NAV ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(20,20,25,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-light)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.wordmark{font-family:'Poppins',sans-serif;font-weight:600;font-size:22px;color:var(--paper);display:flex;align-items:flex-start;gap:1px;line-height:1}
+.wordmark .b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark .x{color:#fff}
+.wordmark sup{font-size:12px;color:var(--blue-bright);margin-left:3px;margin-top:-2px}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-family:'Oswald',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,242,237,.78);transition:color .2s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:1px;background:var(--blue-bright);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:13px 26px;border-radius:999px;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;cursor:pointer;border:0}
+.btn-navy{background:var(--navy);color:var(--paper)}
+.btn-navy:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 12px 30px rgba(46,69,184,.35)}
+.btn-ghost{border:1px solid rgba(244,242,237,.35);color:var(--paper)}
+.btn-ghost:hover{border-color:#fff;transform:translateY(-2px)}
+.btn-nav{padding:10px 20px;font-size:12px}
+.burger{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+.burger span{width:24px;height:2px;background:var(--paper);display:block;transition:.25s}
+.mobile-menu{display:none;position:fixed;inset:72px 0 auto 0;background:var(--ink);z-index:49;padding:26px 32px 34px;border-bottom:1px solid var(--line-light)}
+.mobile-menu a{display:block;font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:.28em;text-transform:uppercase;color:var(--paper);padding:13px 0;border-bottom:1px solid var(--line-light)}
+.mobile-menu.open{display:block}
+/* ---------- HERO ---------- */
+.hero{position:relative;background:var(--ink);color:var(--paper);min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:120px 0 90px}
+.hero::before{content:"";position:absolute;width:900px;height:900px;right:-260px;top:-260px;background:radial-gradient(circle,rgba(46,69,184,.32),transparent 62%);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;width:700px;height:700px;left:-280px;bottom:-320px;background:radial-gradient(circle,rgba(27,37,101,.5),transparent 60%);pointer-events:none;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.06)}}
+.hero-grid-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(244,242,237,.13) 1px,transparent 1px);background-size:26px 26px;mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 0%,transparent 70%)}
+.hero-aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-aurora i{position:absolute;border-radius:50%;filter:blur(90px);mix-blend-mode:screen}
+.hero-aurora i:nth-child(1){width:640px;height:640px;right:-140px;top:-180px;background:radial-gradient(circle,rgba(58,84,220,.55),transparent 65%);animation:aur1 16s ease-in-out infinite alternate}
+.hero-aurora i:nth-child(2){width:520px;height:520px;left:-180px;bottom:-200px;background:radial-gradient(circle,rgba(96,84,220,.4),transparent 65%);animation:aur2 20s ease-in-out infinite alternate}
+.hero-aurora i:nth-child(3){width:420px;height:420px;right:16%;bottom:-160px;background:radial-gradient(circle,rgba(64,150,255,.3),transparent 65%);animation:aur1 24s ease-in-out infinite alternate-reverse}
+@keyframes aur1{to{transform:translate(-70px,60px) scale(1.15)}}
+@keyframes aur2{to{transform:translate(90px,-50px) scale(1.1)}}
+.hero-ghost{position:absolute;top:6%;left:-4%;font-family:'Poppins',sans-serif;font-weight:700;font-size:17vw;line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(244,242,237,.08);pointer-events:none;animation:ghost 36s linear infinite alternate}
+@keyframes ghost{to{transform:translateX(-9%)}}
+.hero-shapes span{position:absolute;pointer-events:none;color:rgba(159,176,255,.5)}
+.hero-shapes .s1{top:16%;right:12%;font-size:44px;animation:spin 22s linear infinite}
+.hero-shapes .s2{width:90px;height:90px;border:1px solid rgba(159,176,255,.35);border-radius:50%;top:58%;right:6%;animation:floaty 9s ease-in-out infinite}
+.hero-shapes .s3{width:56px;height:56px;border:1px solid rgba(244,242,237,.22);top:30%;left:44%;transform:rotate(18deg);animation:floaty 11s ease-in-out infinite reverse}
+.hero-shapes .s4{bottom:26%;left:6%;font-size:30px;font-weight:300;color:rgba(244,242,237,.35);animation:floaty 8s ease-in-out infinite 1s}
+.hero-shapes .s5{width:10px;height:10px;border-radius:50%;background:var(--blue-bright);top:22%;left:30%;animation:floaty 7s ease-in-out infinite .5s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(8deg)}}
+.hero-char{position:absolute;right:4%;top:108px;bottom:auto;width:min(320px,27vw);z-index:1;pointer-events:none;filter:drop-shadow(0 24px 44px rgba(0,0,0,.5))}
+.hero-char img{width:100%;display:block;transform-origin:50% 100%;animation:none}
+.hero-char .hi{position:absolute;top:64px;left:-148px;background:#fff;color:var(--ink);font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border-radius:12px 12px 12px 3px;box-shadow:0 10px 26px rgba(0,0,0,.35);white-space:nowrap;opacity:0;transform:translateY(8px) scale(.9);animation:hipop 8s ease .4s infinite}
+@keyframes hipop{0%{opacity:0;transform:translateY(8px) scale(.9)}7%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+@keyframes charwave{0%,100%{transform:translateY(0) rotate(0)}12%{transform:translateY(-14px) rotate(-3.2deg)}26%{transform:translateY(0) rotate(2.6deg)}40%{transform:translateY(-10px) rotate(-1.8deg)}55%{transform:translateY(0) rotate(0)}}
+@keyframes charbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.hero-in{position:relative;z-index:2;width:100%}
+.hero .dots{color:rgba(244,242,237,.6);margin-bottom:44px}
+.hero-tag{font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.5em;text-transform:uppercase;font-size:13px;color:rgba(244,242,237,.65);margin-bottom:26px}
+.hero-logo{font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(58px,9vw,136px);line-height:.98;letter-spacing:-.01em;position:relative;display:inline-block}
+.hero-logo .b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-logo .x{color:#fff}
+.hero-logo .ast{position:absolute;top:-.28em;left:56%;font-size:.34em;color:var(--blue-bright);display:inline-block;animation:spin 16s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-sub{font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.58em;text-transform:uppercase;font-size:clamp(13px,2vw,19px);color:rgba(244,242,237,.85);margin-top:22px;display:flex;align-items:center;gap:22px}
+.hero-sub::after{content:"";flex:0 0 120px;height:1px;background:rgba(244,242,237,.4)}
+.hero-copy{max-width:520px;margin-top:34px;color:rgba(244,242,237,.72);font-size:17px}
+.hero-cta{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+.js .rise{opacity:0;transform:translateY(34px);animation:rise .9s cubic-bezier(.2,.6,.2,1) forwards}
+.js .rise.d1{animation-delay:.08s}.js .rise.d2{animation-delay:.2s}.js .rise.d3{animation-delay:.34s}
+.js .rise.d4{animation-delay:.48s}.js .rise.d5{animation-delay:.62s}.js .rise.d6{animation-delay:.78s}
+.js .rise.d7{animation-delay:.95s}
+@keyframes rise{to{opacity:1;transform:none}}
+/* marquee */
+.marquee{position:relative;z-index:2;margin-top:84px;border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);overflow:hidden;padding:16px 0}
+.marquee-track{display:flex;gap:44px;white-space:nowrap;animation:mq 30s linear infinite;width:max-content}
+.marquee-track span{font-family:'Oswald',sans-serif;font-weight:400;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,237,.7);display:flex;align-items:center;gap:44px}
+.marquee-track .star{color:var(--blue-bright);font-size:15px}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* ---------- SECTIONS ---------- */
+section{padding:96px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:54px;flex-wrap:wrap}
+.sec-note{max-width:360px;color:rgba(20,20,25,.62);font-size:15px}
+.on-dark .sec-note{color:rgba(244,242,237,.62)}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.about-copy p{color:rgba(20,20,25,.72);font-size:17px;margin-top:26px;max-width:520px}
+.about-copy .claim{font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:13px;color:var(--navy);margin-top:36px;display:flex;align-items:center;gap:14px}
+.about-copy .claim .box{width:34px;height:34px;background:var(--navy);color:var(--paper);display:grid;place-items:center;font-size:15px}
+.about-visual{position:relative}
+.about-visual .frame{position:absolute;inset:-18px 18px 18px -18px;border:1px solid var(--navy);border-radius:20px;z-index:-1}
+.about-visual .badge{position:absolute;right:-14px;top:-14px;background:var(--navy);color:var(--paper);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:10px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(27,37,101,.4);z-index:3}
+.char-stage{position:relative;background:linear-gradient(160deg,#232f7a,#1B2565 55%,#141433);border-radius:18px;box-shadow:0 30px 70px rgba(20,20,25,.18);aspect-ratio:5/6;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.cs-ring{position:absolute;width:120%;aspect-ratio:1;border:1px dashed rgba(159,176,255,.35);border-radius:50%;left:-10%;top:-24%;animation:spin 40s linear infinite}
+.cs-ast{position:absolute;left:8%;top:10%;font-size:34px;color:var(--blue-bright);animation:floaty 8s ease-in-out infinite}
+.cs-bubble{position:absolute;right:7%;top:9%;background:var(--paper);color:var(--ink);font-family:'Oswald',sans-serif;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1.5;padding:12px 16px;border-radius:14px 14px 2px 14px;box-shadow:0 12px 30px rgba(0,0,0,.25);animation:charbob 5s ease-in-out infinite .6s;z-index:2}
+.cs-char{position:relative;z-index:1;height:78%;width:auto;max-width:74%;object-fit:contain;animation:none}
+.cs-shadow{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);width:52%;height:16px;background:radial-gradient(ellipse,rgba(0,0,0,.45),transparent 70%);border-radius:50%;animation:shadowpulse 6s ease-in-out infinite}
+@keyframes shadowpulse{0%,100%{transform:translateX(-50%) scaleX(1)}50%{transform:translateX(-50%) scaleX(.82)}}
+.char-moods{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.char-moods figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.char-moods figure:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 16px 34px rgba(20,20,25,.14)}
+.char-moods img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.char-moods figcaption{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);text-align:center;padding:8px 0}
+.char-note{margin-top:14px;font-size:13px;color:rgba(20,20,25,.55);text-align:center}
+/* TECH / DIGITAL PRODUCTS */
+.tech{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.tech::before{content:"";position:absolute;width:760px;height:760px;left:-300px;top:-300px;background:radial-gradient(circle,rgba(46,69,184,.28),transparent 62%);pointer-events:none}
+.tech .wrap{position:relative;z-index:2}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.tcard{background:var(--ink-2);border:1px solid var(--line-light);border-radius:18px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.6,.2,1),border-color .3s,box-shadow .35s;display:flex;flex-direction:column}
+.tcard:hover{transform:translateY(-7px);border-color:rgba(122,147,255,.55);box-shadow:0 26px 60px rgba(0,0,0,.45)}
+.tshot{position:relative;overflow:hidden;aspect-ratio:16/9;background:#0c0c10}
+.tshot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .7s cubic-bezier(.2,.6,.2,1)}
+.tcard:hover .tshot img{transform:scale(1.05)}
+.tbar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:7px;padding:10px 14px;background:linear-gradient(rgba(12,12,16,.85),rgba(12,12,16,0));z-index:2}
+.tbar i{width:8px;height:8px;border-radius:50%;background:rgba(244,242,237,.35)}
+.tbar .url{margin-left:8px;font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:.14em;color:rgba(244,242,237,.65);background:rgba(244,242,237,.09);padding:3px 12px;border-radius:999px}
+.tbody{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tbody .tlabel{font-family:'Oswald',sans-serif;font-weight:400;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7A93FF}
+.tbody h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:22px;letter-spacing:.02em;color:var(--paper)}
+.tbody p{font-size:14px;color:rgba(244,242,237,.65);flex:1}
+.ttags{display:flex;gap:8px;flex-wrap:wrap}
+.ttags span{font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,242,237,.75);border:1px solid var(--line-light);padding:4px 11px;border-radius:999px}
+.tlinks{display:flex;gap:18px;margin-top:8px}
+.tlinks a{font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#9FB0FF;display:flex;align-items:center;gap:7px;transition:color .2s,gap .2s}
+.tlinks a:hover{color:#fff;gap:11px}
+/* SERVICES */
+.services{background:var(--paper-2)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc{background:var(--paper-2);padding:34px 26px;transition:background .25s,transform .25s}
+.svc:hover{background:var(--paper);transform:translateY(-4px)}
+.svc .num{font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.3em;color:var(--blue)}
+.svc svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:18px 0 16px;transition:transform .3s}
+.svc:hover svg{transform:translateY(-3px) rotate(-4deg)}
+.svc h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:17px;letter-spacing:.02em;margin-bottom:10px}
+.svc p{font-size:13.5px;color:rgba(20,20,25,.62);line-height:1.55}
+/* GOALS BAND */
+.goals{background:var(--navy);color:var(--paper);padding:60px 0}
+.goals-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:26px;text-align:center}
+.goal svg{width:30px;height:30px;stroke:#9FB0FF;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 14px}
+.goal p{font-family:'Oswald',sans-serif;font-weight:300;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;color:rgba(244,242,237,.85)}
+/* WORK — rails */
+.client{margin-bottom:64px}
+.client:last-child{margin-bottom:0}
+.client-head{display:flex;align-items:baseline;gap:22px;margin-bottom:20px;flex-wrap:wrap}
+.client-head .idx{font-family:'Oswald',sans-serif;font-weight:300;font-size:13px;letter-spacing:.3em;color:var(--blue)}
+.client-head h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,3.4vw,40px)}
+.client-head .tag{font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:rgba(20,20,25,.55)}
+.client-desc{max-width:640px;color:rgba(20,20,25,.68);font-size:15px;margin-bottom:24px}
+.rail-wrap{position:relative}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 6px 18px;scrollbar-width:none;-ms-overflow-style:none}
+.rail::-webkit-scrollbar{display:none}
+.rcard{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:14px;overflow:hidden;background:var(--paper-2)}
+.rcard img,.rcard video{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+.rcard.contain img{object-fit:contain;background:#101014}
+.rcard.contain-light img{object-fit:contain;background:#EFEBE3}
+.rcard:hover img{transform:scale(1.045)}
+.rcard .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;background:linear-gradient(transparent,rgba(20,20,25,.82));color:var(--paper);font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.rcard:hover .cap{opacity:1}
+.w-p{flex-basis:clamp(230px,24vw,310px);aspect-ratio:4/5}
+.w-s{flex-basis:clamp(250px,26vw,330px);aspect-ratio:1/1}
+.w-w{flex-basis:clamp(420px,44vw,560px);aspect-ratio:16/9}
+.w-b{flex-basis:clamp(470px,52vw,640px);aspect-ratio:11/10}
+.rail-nav{position:absolute;top:-64px;right:0;display:flex;gap:10px}
+.rnav{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s,transform .2s}
+.rnav:hover{background:var(--navy);border-color:var(--navy);transform:translateY(-2px)}
+.rnav svg{width:15px;height:15px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rnav:hover svg{stroke:var(--paper)}
+.rprog{height:2px;background:var(--line);border-radius:2px;margin-top:2px;overflow:hidden}
+.rprog i{display:block;height:100%;width:12%;background:var(--grad);border-radius:2px;transition:width .15s linear}
+.subhead{font-family:'Oswald',sans-serif;font-weight:400;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);margin:40px 0 18px;display:flex;align-items:center;gap:14px}
+.subhead::after{content:"";flex:1;height:1px;background:var(--line)}
+/* REELS */
+.reels{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.reels::before{content:"";position:absolute;width:700px;height:700px;right:-260px;bottom:-300px;background:radial-gradient(circle,rgba(61,91,255,.22),transparent 62%);pointer-events:none}
+.reels .wrap{position:relative;z-index:2}
+.reel-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.reel{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:9/16;background:var(--ink-2);display:block}
+.reel img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.6,.2,1),opacity .3s}
+.reel:hover img{transform:scale(1.08) rotate(.5deg);opacity:.75}
+.reel .play{position:absolute;inset:0;display:grid;place-items:center}
+.reel .play i{width:46px;height:46px;border-radius:50%;background:rgba(20,20,25,.55);border:1px solid rgba(244,242,237,.5);display:grid;place-items:center;opacity:0;transform:scale(.8);transition:.3s}
+.reel:hover .play i{opacity:1;transform:scale(1)}
+.reel .play svg{width:16px;height:16px;fill:var(--paper);margin-left:2px}
+.reel .rl{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;background:linear-gradient(transparent,rgba(20,20,25,.85));font-family:'Oswald',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,237,.92);line-height:1.5}
+/* RESULTS */
+.organic{margin-top:44px;background:var(--navy);color:var(--paper);border-radius:18px;padding:38px 40px;display:flex;align-items:center;gap:34px;flex-wrap:wrap;position:relative;overflow:hidden}
+.organic::after{content:"✳";position:absolute;right:-24px;top:-52px;font-size:210px;color:rgba(122,147,255,.16);font-family:'Archivo',sans-serif;line-height:1}
+.organic .big{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(26px,3.4vw,42px);line-height:1.05}
+.organic .big span{color:#7A93FF}
+.organic p{max-width:460px;color:rgba(244,242,237,.78);font-size:15px}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.results-grid img{border-radius:14px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(20,20,25,.1);transition:transform .4s cubic-bezier(.2,.6,.2,1)}
+.results-grid img:hover{transform:translateY(-5px)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:46px}
+.stat{text-align:left;border-left:2px solid var(--navy);padding-left:18px}
+.stat .n{font-family:'Anton',sans-serif;font-size:clamp(30px,3.6vw,46px);color:var(--navy);line-height:1.05}
+.stat .n .u{color:var(--blue-bright)}
+.stat .l{font-family:'Oswald',sans-serif;font-weight:300;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(20,20,25,.6);margin-top:8px;line-height:1.6}
+/* STUDIO */
+.studio-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:10px}
+.wcard{position:relative;border-radius:14px;overflow:hidden;background:var(--paper-2)}
+.wcard img,.wcard video{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+.wcard:hover img{transform:scale(1.045)}
+.wcard .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;background:linear-gradient(transparent,rgba(20,20,25,.82));color:var(--paper);font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.wcard:hover .cap{opacity:1}
+.span4{grid-column:span 4}.span6{grid-column:span 6}.span3{grid-column:span 3}
+.r34{aspect-ratio:3/4}.r169{aspect-ratio:16/9}
+.studio-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:42px}
+.studio-intro p{color:rgba(20,20,25,.68);font-size:16px;max-width:480px}
+.studio-feats{display:flex;gap:26px;flex-wrap:wrap;margin-top:24px}
+.feat{font-family:'Oswald',sans-serif;font-weight:300;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:10px}
+.feat::before{content:"✳";color:var(--blue)}
+.studio-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);border-bottom:1px solid var(--blue);padding-bottom:4px;transition:gap .2s}
+.studio-link:hover{gap:13px}
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.testi{position:relative;border:1px solid var(--line);border-radius:16px;padding:36px 32px;background:var(--paper);transition:transform .3s,box-shadow .3s}
+.testi:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(20,20,25,.1)}
+.testi .qm{position:absolute;top:18px;right:26px;font-family:'Anton',sans-serif;font-size:64px;color:rgba(46,69,184,.14);line-height:1}
+.testi .q{font-size:15.5px;color:rgba(20,20,25,.8);line-height:1.7}
+.testi .who{margin-top:22px;font-family:'Oswald',sans-serif;font-weight:400;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:10px}
+.testi .who::before{content:"✳";color:var(--blue)}
+/* CONTACT */
+.contact{background:var(--ink);color:var(--paper);text-align:center;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;width:800px;height:800px;left:50%;top:-420px;transform:translateX(-50%);background:radial-gradient(circle,rgba(46,69,184,.3),transparent 62%);pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
+.contact .wrap{position:relative;z-index:2}
+.contact h2{font-size:clamp(46px,7vw,104px)}
+.contact h2 .b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.contact .spaced{display:block;margin-top:26px;font-size:13px;color:rgba(244,242,237,.7)}
+.contact-cta{display:flex;gap:16px;justify-content:center;margin-top:44px;flex-wrap:wrap}
+.contact-lines{display:flex;justify-content:center;gap:44px;margin-top:54px;flex-wrap:wrap}
+.cline{font-family:'Oswald',sans-serif;font-weight:300;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,242,237,.75);display:flex;align-items:center;gap:10px;transition:color .2s}
+.cline:hover{color:#fff}
+.cline svg{width:16px;height:16px;stroke:#9FB0FF;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* FOOTER */
+footer{background:var(--ink);color:rgba(244,242,237,.55);border-top:1px solid var(--line-light);padding:34px 0}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot .fs{display:flex;gap:10px}
+.foot .fs a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line-light);border-radius:50%;transition:border-color .25s,transform .25s}
+.foot .fs a:hover{border-color:var(--blue-bright);transform:translateY(-3px)}
+.foot .fs svg{width:15px;height:15px;stroke:rgba(244,242,237,.75);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* floating WhatsApp */
+.wa-float{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;z-index:60;box-shadow:0 12px 30px rgba(37,211,102,.4);transition:transform .25s}
+.wa-float:hover{transform:translateY(-4px) scale(1.06)}
+.wa-float::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.55);animation:wapulse 2.2s ease-out infinite}
+@keyframes wapulse{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.45);opacity:0}}
+.wa-float svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.foot img{height:40px;width:40px;object-fit:contain;background:var(--paper);border-radius:8px;padding:3px}
+.foot small{font-size:12.5px;letter-spacing:.06em}
+.foot .fl{display:flex;gap:22px;font-family:'Oswald',sans-serif;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase}
+.foot .fl a:hover{color:#fff}
+/* reveal */
+.js .fi{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.6,.2,1)}
+.js .fi.vis{opacity:1;transform:none}
+.js .stg>*{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.6,.2,1)}
+.js .stg.vis>*{opacity:1;transform:none}
+.js .stg.vis>*:nth-child(2){transition-delay:.08s}.js .stg.vis>*:nth-child(3){transition-delay:.16s}
+.js .stg.vis>*:nth-child(4){transition-delay:.24s}.js .stg.vis>*:nth-child(5){transition-delay:.32s}
+.js .stg.vis>*:nth-child(6){transition-delay:.4s}.js .stg.vis>*:nth-child(7){transition-delay:.48s}
+.js .stg.vis>*:nth-child(8){transition-delay:.56s}.js .stg.vis>*:nth-child(9){transition-delay:.64s}
+.js .stg.vis>*:nth-child(10){transition-delay:.72s}.js .stg.vis>*:nth-child(11){transition-delay:.8s}
+.js .stg.vis>*:nth-child(12){transition-delay:.88s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1020px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .goals-grid{grid-template-columns:repeat(3,1fr);row-gap:36px}
+  .reel-grid{grid-template-columns:repeat(4,1fr)}
+  .about-grid,.studio-intro{grid-template-columns:1fr;gap:44px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .hero-char{width:260px;right:1%;top:130px}
+  .hero-ghost{font-size:24vw}
+}
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+  section{padding:72px 0}
+  .nav-links,.btn-nav{display:none}
+  .burger{display:flex}
+  .svc-grid{grid-template-columns:1fr}
+  .hero{padding:116px 0 36px;min-height:100svh;justify-content:flex-start}
+  .hero .dots{margin-bottom:22px}
+  .hero-tag{font-size:10px;line-height:1.8;letter-spacing:.3em;margin-bottom:28px;max-width:310px}
+  .hero-logo{font-size:clamp(46px,11.3vw,76px)}
+  .hero-sub{margin-top:18px;font-size:13px}
+  .hero-copy{font-size:15px;line-height:1.75;max-width:none;width:calc(100% - 155px);margin-top:30px;min-height:340px}
+  .hero-char{display:block;width:200px;right:-12px;top:310px;bottom:auto;z-index:3;filter:drop-shadow(0 15px 24px rgba(0,0,0,.4))}
+  .hero-char .hi{top:-12px;left:-20px;font-size:9px;padding:7px 10px;letter-spacing:.08em}
+  .hero-cta{margin-top:22px;gap:12px}
+  .hero-cta .btn{padding:15px 21px;font-size:11px;letter-spacing:.18em}
+  .hero .marquee{margin-top:36px}
+  .hero-ghost{top:100px}
+  .hero-shapes .s2,.hero-shapes .s3{display:none}
+  .wa-float{bottom:16px;right:16px;width:52px;height:52px}
+  .goals-grid{grid-template-columns:repeat(2,1fr)}
+  .reel-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+  .results-grid,.testi-grid,.tech-grid{grid-template-columns:1fr}
+  .span4,.span6,.span3{grid-column:span 12}
+  .hero-sub{letter-spacing:.34em}
+  .hero-sub::after{display:none}
+  .marquee{margin-top:60px}
+  .contact-lines{gap:22px}
+  .char-moods{grid-template-columns:repeat(2,1fr)}
+  .w-p{flex-basis:66vw}.w-s{flex-basis:70vw}.w-w,.w-b{flex-basis:82vw}
+  .rail-nav{display:none}
+  .organic{padding:30px 24px}
+  .stats-row{grid-template-columns:1fr 1fr;gap:20px}
+}
+/* ABOUT as BTS backdrop */
+.about-bts{position:relative;overflow:hidden;color:var(--paper)}
+.about-bg{position:absolute;inset:0;background:url('images/bts-about.jpg') center 26%/cover no-repeat;transform:scale(1.05)}
+.about-bts::after{content:"";position:absolute;inset:0;background:linear-gradient(102deg,rgba(20,20,25,.94) 0%,rgba(27,37,101,.86) 46%,rgba(20,20,25,.6) 100%)}
+.about-in{position:relative;z-index:2;max-width:620px}
+.about-in .about-lead{font-size:18px;color:rgba(244,242,237,.88);margin-top:26px}
+.about-in .about-sub{color:rgba(244,242,237,.66);font-size:16px;margin-top:18px}
+.about-in .claim{font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:13px;color:var(--paper);margin-top:36px;display:flex;align-items:center;gap:14px}
+.about-in .claim .box{width:34px;height:34px;background:var(--blue);color:var(--paper);display:grid;place-items:center;font-size:15px}
+a.rcard{display:block;color:inherit;text-decoration:none}
+.dlink{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:inline-block;margin-top:10px;border-bottom:1px solid currentColor;padding-bottom:2px}
+.on-dark .dlink{color:#9FB0FF}
+/* Hero motion: transparent video, still fallback and grounded shadow. */
+.hero-char{aspect-ratio:9/16}
+.hero-char::after{content:"";position:absolute;left:22%;right:22%;bottom:2%;height:4%;border-radius:50%;background:rgba(0,0,0,.32);filter:blur(7px);z-index:-1}
+.hero-char .char-poster{position:absolute;width:72%;height:100%;left:14%;top:0;object-fit:contain}
+.hero-char video{position:relative;width:100%;height:100%;display:block;object-fit:contain;opacity:0;transition:opacity .2s;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.hero-char.is-playing video{opacity:1}
+.hero-char.is-playing .char-poster{visibility:hidden}
+@media(prefers-reduced-motion:reduce){.hero-char video{display:none!important}.hero-char.is-playing .char-poster{visibility:visible}}
+
+/* Compact three-dimensional studio set carousel */
+.location-showcase{--card-w:258px;--card-h:338px;--radius:340px;margin:50px -32px 70px;padding:28px 0 26px;background:radial-gradient(ellipse at 50% 44%,#293578 0%,#161a30 45%,#111218 76%);border-block:1px solid rgba(159,176,255,.18);overflow:hidden;isolation:isolate}
+.location-head{padding:0 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}.location-head .subhead{margin:0;color:#b3c0ff}.location-head>span{font:11px 'Oswald',sans-serif;letter-spacing:.28em;color:#9fafff}
+.location-stage{height:440px;position:relative;perspective:1200px;touch-action:pan-y;cursor:grab}
+.location-stage::after{content:"";position:absolute;width:70%;height:65px;left:15%;bottom:8px;background:radial-gradient(ellipse,rgba(61,91,255,.2),transparent 68%);pointer-events:none}
+.location-ring{position:absolute;left:50%;top:46%;width:var(--card-w);height:var(--card-h);margin-left:calc(var(--card-w)/-2);margin-top:calc(var(--card-h)/-2);transform-style:preserve-3d;transform:translateZ(calc(var(--radius)*-1)) rotateY(0deg);transition:transform 950ms cubic-bezier(.22,.65,.25,1)}
+.location-card{position:absolute;inset:0;transform:rotateY(calc(var(--i)*60deg)) translateZ(var(--radius));backface-visibility:hidden;border:1px solid rgba(244,242,237,.28);border-radius:12px;overflow:hidden;background:#171922;box-shadow:0 22px 42px #0009;transition:filter 950ms,opacity 950ms;filter:brightness(.5)}
+.location-card.is-active{filter:brightness(1)}.location-card img{width:100%;height:100%;object-fit:cover}.location-card figcaption{position:absolute;inset:auto 0 0;padding:44px 18px 17px;background:linear-gradient(transparent,#000c);font:13px 'Oswald',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.location-controls{display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:2}.location-controls button{width:40px;height:40px;border:1px solid #f4f2ed50;border-radius:50%;background:transparent;color:#f4f2ed;font-size:20px;cursor:pointer;transition:background .2s}.location-controls button:hover{background:#3d5bff}.location-status{text-align:center;min-width:200px}.location-count{font:10px 'Oswald',sans-serif;letter-spacing:.25em;color:#9fafff}.location-title{font:18px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.12em;color:#f4f2ed;margin-top:4px}.location-pause{font-size:13px!important}.location-hint{text-align:center;font-size:11px;color:#f4f2ed80;margin-top:18px;letter-spacing:.04em}
+.bts-rail .rcard{height:310px;width:230px;flex-basis:230px}.bts-rail .rail{gap:18px}.bts-rail .rcard img{object-fit:cover}
+@media(max-width:600px){.location-showcase{--card-w:180px;--card-h:240px;--radius:205px;margin:32px -20px 44px;padding:22px 0}.location-head{padding:0 22px;display:block}.location-head>span{display:block;font-size:9px;margin-top:9px}.location-stage{height:315px;perspective:850px}.location-controls{gap:13px}.location-status{min-width:165px}.location-title{font-size:15px}.location-controls button{width:32px;height:32px}.location-hint{font-size:10px}.bts-rail .rcard{height:260px;width:195px;flex-basis:195px}}
+@media(prefers-reduced-motion:reduce){.location-ring,.location-card{transition:none}}
+</style>
+</head>
+<body>
+<script>document.body.classList.add('js')</script>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#top" class="wordmark" aria-label="Lumexeda home"><span class="b">Lume</span><span class="x">x</span>eda<sup>✳</sup></a>
+    <div class="nav-links">
+      <a href="#reels">Reels</a>
+      <a href="#about">About</a>
+      <a href="#websites">Websites</a>
+      <a href="#studio">Studio</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-navy btn-nav" href="https://wa.me/201091128261" target="_blank" rel="noopener">Start a Project</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mmenu">
+  <a href="#reels">Reels</a>
+  <a href="#about">About</a>
+  <a href="#websites">Websites</a>
+  <a href="#studio">Studio</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
+  <a href="https://wa.me/201091128261" target="_blank" rel="noopener" style="color:#9FB0FF">Start a Project ↗</a>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hero-ghost" aria-hidden="true">Lumexeda ✳ Lumexeda ✳ Lumexeda</div>
+  <div class="hero-shapes" aria-hidden="true"><span class="s1">✳</span><span class="s2"></span><span class="s3"></span><span class="s4">+</span><span class="s5"></span></div>
+  <div class="hero-char" aria-hidden="true"><img class="char-poster" src="images/char-clean.webp" alt=""><video id="hero-video" autoplay muted loop playsinline preload="auto" poster="images/char-clean.webp"><source src="images/char-wave.webm" type="video/webm"><source src="images/char-wave.mp4" type="video/mp4"></video></div>
+  <div class="wrap hero-in">
+    <div class="dots rise d1"><i></i><i></i><i></i></div>
+    <p class="hero-tag rise d2">Marketing Company &amp; Media Production House</p>
+    <h1 class="hero-logo rise d3"><span class="b">Lume</span><span class="x">x</span>eda<span class="ast">✳</span></h1>
+    <p class="hero-sub rise d4">Studio &amp; Media</p>
+    <p class="hero-copy rise d5">We own your brand from A to Z — branding, copywriting and ideas, content shooting and directing, publishing, and the follow-up that keeps it growing. One partner. All solutions.</p>
+    <div class="hero-cta rise d6">
+      <a class="btn btn-navy" href="https://wa.me/201091128261" target="_blank" rel="noopener">Start a Project</a>
+      <a class="btn btn-ghost" href="#reels">See Our Work</a>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Copywriting &amp; Scripts <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Shooting &amp; Directing <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Publishing <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
+      <span>Professional Production <i class="star">✳</i> Brand Identity <i class="star">✳</i> Copywriting &amp; Scripts <i class="star">✳</i> Social Media Management <i class="star">✳</i> Content Strategy <i class="star">✳</i> Shooting &amp; Directing <i class="star">✳</i> Reels &amp; Short-Form <i class="star">✳</i> Websites &amp; Portfolios <i class="star">✳</i> Publishing <i class="star">✳</i> Creative Concepts <i class="star">✳</i> Social Media Designs <i class="star">✳</i> Analytics &amp; Reporting <i class="star">✳</i></span>
+    </div>
+  </div>
+</header>
+
+<section class="reels on-dark" id="reels">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker on-dark">Shot, edited, published</p>
+        <h2 class="sec condensed"><span class="b">Reels</span> &amp;<br>Short-Form</h2>
+      </div>
+      <p class="sec-note">A selection of reels we produced for clients across medicine, fashion, real estate, cars and more. Tap any cover to watch.<br><a class="dlink" href="https://drive.google.com/drive/folders/1xPA2BPpMxkdV_t_3fJOke3bxpVu8gnLv" target="_blank" rel="noopener">Browse all reels on Drive ↗</a></p>
+    </div>
+    <div class="reel-grid stg">
+      <a class="reel" href="https://drive.google.com/file/d/1uCIoKNClPu5SWiLssdjlngXwXjD4ZQwm/view" target="_blank" rel="noopener"><img src="images/reels/reel-01-personal-brand.jpg" alt="Personal brand reel — How do I start in marketing" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Personal Brand — How I started in marketing</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1p7hinhRi32lkLywwOIq_7SViyTMnj6Mj/view" target="_blank" rel="noopener"><img src="images/reels/reel-02-pt-qa.jpg" alt="Physical therapy reel — answering patient questions" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Physical Therapy — Patient Q&amp;A</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1sSLuiH9NgAz4PI5FRkDhAIvc7DPk36Fd/view" target="_blank" rel="noopener"><img src="images/reels/reel-03-men-250-offers.jpg" alt="Men's clothing reel — the 250 offers" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Men's Clothing — The 250 Offers</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1tmSGcH0T2GKopaZrQdfu-cDpbbOjktcm/view" target="_blank" rel="noopener"><img src="images/reels/reel-04-patient-story.jpg" alt="Plastic surgery reel — why I chose my doctor" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Plastic Surgery — Patient Story</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1zFp_jjP7WRkQXkEQuHdfAvZW69hJKN6f/view" target="_blank" rel="noopener"><img src="images/reels/reel-05-best-investment.jpg" alt="Real estate reel — the best investment" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Real Estate — The Best Investment</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1JZZYMrAudUogBzbhdC7YPKHPu27XzpXR/view" target="_blank" rel="noopener"><img src="images/reels/reel-06-opel-review.jpg" alt="Cars reel — Opel review shot on the road" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Cars — Opel Review, on the Road</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1BAZ41BXMaNn_wvtPxeza-RhzVjbbgA__/view" target="_blank" rel="noopener"><img src="images/reels/reel-07-clinic-story.jpg" alt="Physical therapy reel — clinic story" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Physical Therapy — Clinic Story</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1kEEbIE6vysrIfyp1ax8S-v1UxyosPER7/view" target="_blank" rel="noopener"><img src="images/reels/reel-08-store-offers.jpg" alt="Men's clothing reel — store offers" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Men's Clothing — Store Offers</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1aawi250df_GuLLxWfWNcrvMToXALDI67/view" target="_blank" rel="noopener"><img src="images/reels/reel-09-studio-promo.jpg" alt="Lumexeda studio promo reel" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Lumexeda — Studio Promo</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1OH3etwGp2WPYBLgRn2gG53d5-xSlcp9D/view" target="_blank" rel="noopener"><img src="images/reels/reel-10-what-to-invest.jpg" alt="Real estate reel — what should you invest in" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Real Estate — What to Invest In</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1ocS_eq-tQk33I2Y_abVFFnv3njVPb890/view" target="_blank" rel="noopener"><img src="images/reels/reel-11-cellulite-lipedema.jpg" alt="Physical therapy educational reel — cellulite vs lipedema" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Physical Therapy — Cellulite vs. Lipedema</span></a>
+      <a class="reel" href="https://drive.google.com/file/d/1RRU26ROtu4brVFGsLCZ-0hBZuADniZua/view" target="_blank" rel="noopener"><img src="images/reels/reel-12-gift-dog.jpg" alt="Studio shoot reel — the gift dog" loading="lazy"><span class="play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span><span class="rl">Studio Shoot — The Gift Dog</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-bts on-dark">
+  <div class="about-bg" aria-hidden="true"></div>
+  <div class="wrap about-in fi">
+    <p class="kicker on-dark">Who we are</p>
+    <h2 class="sec condensed"><span class="b">About</span><br>Us <span class="star">✳</span></h2>
+    <p class="about-lead">Lumexeda is a marketing company and media production house. We take your brand from A to Z: branding, copywriting and ideas, content shooting and directing, publishing, then follow-up and analytics — one team, responsible for the whole journey.</p>
+    <p class="about-sub">No face behind the brand: the whole studio stands behind your project. The face up front? That's our character's job — every mood, every mode, always on brand.</p>
+    <div class="claim"><span class="box">✳</span> One partner. All solutions. Strategy to results.</div>
+  </div>
+</section>
+
+<section class="tech on-dark" id="websites">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker on-dark">Technical</p>
+        <h2 class="sec condensed"><span class="b">Websites</span> &amp;<br>Digital Products</h2>
+      </div>
+      <p class="sec-note">Lumexeda builds too. We design, code and deploy websites, portfolios and digital products — from the first wireframe to the live URL.</p>
+    </div>
+    <div class="tech-grid stg">
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">auticare-ruddy.vercel.app</span></div>
+          <img src="images/tech-auticare.jpg" alt="AutiCare platform homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">AI Platform</span>
+          <h3>AutiCare</h3>
+          <p>AI-powered early autism screening and support platform.</p>
+          <div class="ttags"><span>React</span><span>AI</span><span>Web</span></div>
+          <div class="tlinks"><a href="https://auticare-ruddy.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">portfolio-hazel-three-99.vercel.app</span></div>
+          <img src="images/tech-shahd.jpg" alt="Shahd Alaa portfolio homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">Web Design</span>
+          <h3>Shahd Alaa Portfolio</h3>
+          <p>Creative portfolio digital experience.</p>
+          <div class="ttags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <div class="tlinks"><a href="https://portfolio-hazel-three-99.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">donia-alaa-portfolio.vercel.app</span></div>
+          <img src="images/tech-donia-portfolio.jpg" alt="Donia Alaa portfolio homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">Portfolio</span>
+          <h3>Donia Alaa Portfolio</h3>
+          <p>A social media strategist's portfolio — case studies, reels and studio work.</p>
+          <div class="ttags"><span>Portfolio</span><span>Vercel</span></div>
+          <div class="tlinks">
+            <a href="https://donia-alaa-portfolio.vercel.app/" target="_blank" rel="noopener">View Project ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">lumexeda-studio.vercel.app</span></div>
+          <img src="images/tech-lumexeda-new.jpg" alt="Lumexeda studio website homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">Studio Website</span>
+          <h3>Lumexeda Studio &amp; Media</h3>
+          <p>Our own home on the web — the site you're on right now, designed and built by Lumexeda.</p>
+          <div class="ttags"><span>Brand</span><span>Web</span><span>This Site</span></div>
+          <div class="tlinks"><a href="https://lumexeda-studio.vercel.app/" target="_blank" rel="noopener">View Project ↗</a></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tshot">
+          <div class="tbar"><i></i><i></i><i></i><span class="url">halawaflower.com</span></div>
+          <img src="images/tech-halawa.jpg" alt="Halawa Flowers online shop homepage" loading="lazy">
+        </div>
+        <div class="tbody">
+          <span class="tlabel">E-commerce</span>
+          <h3>Halawa Flowers</h3>
+          <p>An online flower shop for an Alexandria florist, built, hosted and managed by Lumexeda, with a full admin panel to run products and orders.</p>
+          <div class="ttags"><span>E-commerce</span><span>Admin Panel</span><span>Hosting</span></div>
+          <div class="tlinks"><a href="https://halawaflower.com/" target="_blank" rel="noopener">View Project ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="studio">
+  <div class="wrap">
+    <div class="studio-intro fi">
+      <div>
+        <p class="kicker">The space</p>
+        <h2 class="sec condensed"><span class="b">The</span> Studio</h2>
+      </div>
+      <div>
+        <p>A fully equipped shooting space with a white cyclorama, professional lighting and modular setups — built for reels, campaigns and product photography. Available for client productions and studio bookings.</p>
+        <div class="studio-feats">
+          <span class="feat">White Cyclorama</span>
+          <span class="feat">Pro Lighting</span>
+          <span class="feat">Modular Sets</span>
+          <span class="feat">On-Location Too</span>
+        </div>
+        <a class="studio-link" href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener">Visit the Studio ↗</a>
+      </div>
+    </div>
+    <div class="location-showcase" id="location-showcase" role="region" aria-label="Studio location carousel" aria-roledescription="carousel">
+      <div class="location-head"><p class="subhead">Location Setups</p><span>SIX SETS. YOUR NEXT SCENE.</span></div>
+      <div class="location-stage"><div class="location-ring"><figure class="location-card" style="--i:0" data-title="The Sofa Set"><img src="images/loc-sofa-ottoman.jpg" alt="Sofa and fluffy ottoman set with lilies" loading="lazy"><figcaption>The Sofa Set</figcaption></figure><figure class="location-card" style="--i:1" data-title="Armchair &amp; Sunflowers"><img src="images/loc-armchair-sunflowers.jpg" alt="Tufted armchair with sunflowers and floor lamp" loading="lazy"><figcaption>Armchair &amp; Sunflowers</figcaption></figure><figure class="location-card" style="--i:2" data-title="Conversation Set"><img src="images/loc-two-chairs.jpg" alt="Two-chair conversation setup with curtains" loading="lazy"><figcaption>Conversation Set</figcaption></figure><figure class="location-card" style="--i:3" data-title="The Desk Set"><img src="images/loc-desk-woodslat.jpg" alt="Desk setup on a wood-slat wall with florals" loading="lazy"><figcaption>The Desk Set</figcaption></figure><figure class="location-card" style="--i:4" data-title="Stone Wall Corner"><img src="images/loc-armchair-stone.jpg" alt="Brown armchair on a sunlit stone wall" loading="lazy"><figcaption>Stone Wall Corner</figcaption></figure><figure class="location-card" style="--i:5" data-title="Wood-Slat Corner"><img src="images/loc-chair-woodslat.jpg" alt="Accent chair on a wood-slat wall with sunflowers" loading="lazy"><figcaption>Wood-Slat Corner</figcaption></figure></div></div>
+      <div class="location-controls"><button type="button" class="location-prev" aria-label="Previous studio set">←</button><div class="location-status"><span class="location-count">01 / 06</span><p class="location-title">The Sofa Set</p></div><button type="button" class="location-next" aria-label="Next studio set">→</button><button type="button" class="location-pause" aria-label="Pause studio carousel">Ⅱ</button></div>
+      <p class="location-hint">A new perspective every two seconds · Swipe to explore</p>
+    </div>
+    <p class="subhead fi">Behind the Scenes</p>
+    <div class="rail-wrap bts-rail fi">
+      <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous behind the scenes photos">←</button><button class="rnav" data-dir="1" aria-label="Next behind the scenes photos">→</button></div><div class="rail"><div class="rcard w-p"><img src="images/bts-camera-seated.jpg" alt="Camera framing a seated portrait session" loading="lazy"><span class="cap">On the Cyclorama</span></div><div class="rcard w-p"><video src="images/bts-halawa-1.mp4" poster="images/bts-halawa-1.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Halawa Flowers behind the scenes, shoot 1"></video><span class="cap">Halawa Flowers · On Set</span></div><div class="rcard w-p"><img src="images/bts-clinic-desk.jpg" alt="Camera setup for a clinic desk interview" loading="lazy"><span class="cap">Clinic Content</span></div><div class="rcard w-p"><video src="images/studio-cyclorama-white.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Shooting on the white cyclorama"></video><span class="cap">The Cyclorama</span></div><div class="rcard w-p"><img src="images/bts-office-wide.jpg" alt="Wide view of an office interview production" loading="lazy"><span class="cap">Office Interview</span></div><div class="rcard w-p"><img src="images/bts-monitor-standing.jpg" alt="Camera monitor framing a standing portrait" loading="lazy"><span class="cap">On Monitor</span></div><div class="rcard w-p"><video src="images/bts-halawa-2.mp4" poster="images/bts-halawa-2.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Halawa Flowers behind the scenes, shoot 2"></video><span class="cap">Halawa Flowers · On Set</span></div><div class="rcard w-p"><img src="images/bts-clinic-filming.jpg" alt="Filming a treatment demonstration at the clinic" loading="lazy"><span class="cap">On Location</span></div><div class="rcard w-p"><video src="images/studio-blue-setup.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Creative blue-light studio setup"></video><span class="cap">Creative Lighting</span></div><div class="rcard w-p"><video src="images/bts-halawa-3.mp4" poster="images/bts-halawa-3.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Halawa Flowers behind the scenes, shoot 3"></video><span class="cap">Halawa Flowers · On Set</span></div><div class="rcard w-p"><img src="images/bts-clinic-camera.jpg" alt="Production camera during a client session" loading="lazy"><span class="cap">Behind the Camera</span></div><div class="rcard w-p"><img src="images/bts-6.jpg" alt="The team filming a seated client session" loading="lazy"><span class="cap">The Team at Work</span></div></div><div class="rprog"><i></i></div></div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker">What we do</p>
+        <h2 class="sec condensed"><span class="b">Our</span> Services</h2>
+      </div>
+      <p class="sec-note">From branding and scripts to shooting, directing, publishing and analytics — we own your brand end to end.</p>
+    </div>
+    <div class="svc-grid stg">
+      <div class="svc"><span class="num">01</span><svg viewBox="0 0 24 24"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3"/></svg><h3>Professional Production</h3><p>Full studio setup with professional cameras, lighting &amp; audio — shot and directed in-studio or on location.</p></div>
+      <div class="svc"><span class="num">02</span><svg viewBox="0 0 24 24"><path d="M12 19l7-7a4.95 4.95 0 10-7-7l-7 7 7 7z"/><path d="M9 8l6 6"/><circle cx="12" cy="12" r="1"/></svg><h3>Brand Identity</h3><p>Logo design, brand guidelines, visual identity and complete brand styling.</p></div>
+      <div class="svc"><span class="num">03</span><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg><h3>Social Media Management</h3><p>Complete page management to grow your brand and engage your audience.</p></div>
+      <div class="svc"><span class="num">04</span><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h3>Social Media Designs</h3><p>Eye-catching, on-brand designs for posts, stories, ads and more.</p></div>
+      <div class="svc"><span class="num">05</span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><h3>Content Strategy</h3><p>Data-driven content plans tailored to your goals and audience.</p></div>
+      <div class="svc"><span class="num">06</span><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg><h3>Reels &amp; Short-Form Videos</h3><p>Creative reels, trending edits and storytelling videos that drive reach and results.</p></div>
+      <div class="svc"><span class="num">07</span><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0012 2z"/></svg><h3>Creative Concepts</h3><p>Fresh ideas, content angles and campaign concepts that make your brand stand out.</p></div>
+      <div class="svc"><span class="num">08</span><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg><h3>Analytics &amp; Reporting</h3><p>Performance tracking, insights and monthly reports to measure growth and optimize results.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="goals">
+  <div class="wrap goals-grid stg">
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M3 11l14-5v12L3 13v-2z"/><path d="M7 13v5a2 2 0 004 0v-4.3"/></svg><p>Increase Brand Awareness</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M18 5v6M21 8h-6"/></svg><p>Generate More Leads</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><p>Increase Sales</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9.4-8 11-4.5-1.6-8-6-8-11V5l8-3z"/><path d="M12 8l1.2 2.4L15.7 11l-2.5.6L12 14l-1.2-2.4L8.3 11l2.5-.6L12 8z"/></svg><p>Build Brand Identity</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/><path d="M12 10.7s-2.2-1.6-2.2-3.1c0-.9.7-1.6 1.5-1.6.3 0 .5.1.7.3.2-.2.4-.3.7-.3.8 0 1.5.7 1.5 1.6 0 1.5-2.2 3.1-2.2 3.1z"/></svg><p>Improve Engagement</p></div>
+    <div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z"/></svg><p>Create Viral Reels</p></div>
+  </div>
+</div>
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker">Selected work</p>
+        <h2 class="sec condensed"><span class="b">Work</span> That<br>Speaks <span class="star">✳</span></h2>
+      </div>
+      <p class="sec-note">Real strategy, plans and designs for real brands — the thinking first, then the visuals. Scroll each story sideways.</p>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">01</span><h3>Dr. Menna</h3><span class="tag">Plastic Surgery — Social Media Management</span></div>
+      <p class="client-desc">Monthly content plans, reel scripts and Canva-crafted campaign designs for a plastic surgery page — photographed in our studio, published and reported every month.</p>
+      <a class="dlink" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener">See the full project on Drive ↗</a>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <a class="rcard w-w" style="aspect-ratio:2/1" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-are-you-ready.jpg" alt="Dr. Menna campaign design — Are you Ready" loading="lazy"><span class="cap">Campaign Design</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-services-poster.jpg" alt="Dr. Menna services poster — plastic and aesthetic surgeon" loading="lazy"><span class="cap">Services Poster</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-name-portrait.jpg" alt="Dr. Menna portrait design" loading="lazy"><span class="cap">Portrait Design</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-seated-intro.jpg" alt="Dr. Menna seated introduction design" loading="lazy"><span class="cap">Introduction Design</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-expert-series.jpg" alt="The Expert Series carousel — opening slide" loading="lazy"><span class="cap">The Expert Series 01</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-about-her.jpg" alt="About her carousel slide" loading="lazy"><span class="cap">The Expert Series 02</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-specialties.jpg" alt="Her specialties carousel slide" loading="lazy"><span class="cap">The Expert Series 03</span></a>
+          <a class="rcard w-p" href="https://drive.google.com/drive/folders/1gmnBYAscv4QC9ce-ds8uHvAwC3l50Upi" target="_blank" rel="noopener"><img src="images/menna-shoot-composition.jpg" alt="Photoshoot composition from the studio session" loading="lazy"><span class="cap">Studio Composition</span></a>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">02</span><h3>Ahmed Farrag</h3><span class="tag">In Out Studio — Personal Brand Designs</span></div>
+      <p class="client-desc">A founder-led personal brand for the architect behind In Out Studio — from the pre-shoot content direction and moodboards to a complete social media design system of founder portraits, campaign posts and brand statements.</p>
+      <a class="dlink" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener">See the full project on Drive ↗</a>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <a class="rcard w-b contain" href="https://drive.google.com/file/d/1m2MEYWQXOxRKUS8Dk6OQW-N8DCYJdxJE/view" target="_blank" rel="noopener"><img src="images/work-farag-moodboard-dark.jpg" alt="InOut Studio visual content moodboard — dark version, full content direction" loading="lazy"><span class="cap">Content Direction — Dark</span></a>
+          <a class="rcard w-b contain-light" href="https://drive.google.com/file/d/1m2MEYWQXOxRKUS8Dk6OQW-N8DCYJdxJE/view" target="_blank" rel="noopener"><img src="images/work-farag-moodboard-light.jpg" alt="InOut Studio visual content moodboard — light version" loading="lazy"><span class="cap">Content Direction — Light</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-1.jpg" alt="Ahmed Farrag — blue-lit founder portrait, Designing Spaces that Reflect You" loading="lazy"><span class="cap">Brand Campaign</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-2.jpg" alt="Ahmed Farrag — From Vision to Reality, beige suit portrait" loading="lazy"><span class="cap">Vision to Reality</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-3.jpg" alt="Ahmed Farrag — From Vision to Reality, dark portrait" loading="lazy"><span class="cap">Vision to Reality</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-4.jpg" alt="Ahmed Farrag — A Signature in Every Space" loading="lazy"><span class="cap">A Signature in Every Space</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-5.jpg" alt="Ahmed Farrag — black and white founder portrait" loading="lazy"><span class="cap">Founder &amp; CEO</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-6.jpg" alt="Ahmed Farrag — Spaces designed for a better tomorrow" loading="lazy"><span class="cap">A Better Tomorrow</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-7.jpg" alt="Ahmed Farrag — A Vision. A Signature." loading="lazy"><span class="cap">A Vision. A Signature.</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-8.jpg" alt="Ahmed Farrag — Architecture and interior design created for people" loading="lazy"><span class="cap">Created for People</span></a>
+          <a class="rcard w-p contain" href="https://drive.google.com/drive/folders/1DqH-COUsjvvAJjcgBxJNyFRmbGbGfTTI" target="_blank" rel="noopener"><img src="images/work-farag-9.jpg" alt="Ahmed Farrag — Design with Purpose, double-exposure portrait" loading="lazy"><span class="cap">Design with Purpose</span></a>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">03</span><h3>Mai Abdelhafez</h3><span class="tag">Interior Design — Strategy &amp; Content</span></div>
+      <p class="client-desc">A full social media direction for an interior design studio: competitor study, positioning from portfolio to design authority, a three-month roadmap and monthly feed grids.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1Oh8812MhRZpWFm8LHsOzQo3U0QGqivhl/view" target="_blank" rel="noopener"><img src="images/work-mai-positioning.jpg" alt="Mai Abdelhafez strategy — positioning from portfolio to design authority" loading="lazy"><span class="cap">Positioning Strategy</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1Oh8812MhRZpWFm8LHsOzQo3U0QGqivhl/view" target="_blank" rel="noopener"><img src="images/work-mai-roadmap.jpg" alt="Three-month content roadmap — foundation, authority, conversion" loading="lazy"><span class="cap">3-Month Roadmap</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/16LP-9E2mOv7nkRhRU3ClQ2bKR-BcIEJp/view" target="_blank" rel="noopener"><img src="images/work-mai-grid-1.jpg" alt="Month one feed-grid reference from the 24-piece content bank" loading="lazy"><span class="cap">Month 01 Feed Grid</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/16LP-9E2mOv7nkRhRU3ClQ2bKR-BcIEJp/view" target="_blank" rel="noopener"><img src="images/work-mai-grid-2.jpg" alt="Month two feed-grid reference" loading="lazy"><span class="cap">Month 02 Feed Grid</span></a>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi">
+      <div class="client-head"><span class="idx">04</span><h3>Halawa Flowers</h3><span class="tag">Florist — Concepts &amp; Storytelling</span></div>
+      <p class="client-desc">People-first gifting stories and flower-craft concepts, built on a competitor study and a phased content roadmap.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <div class="rcard w-w"><img src="images/work-halawa-concepts.jpg" alt="Halawa Flowers — people-first gifting stories and flower-craft concepts" loading="lazy"><span class="cap">Content Concepts</span></div>
+          <div class="rcard w-w"><img src="images/work-halawa-study.jpg" alt="Halawa Flowers — competitor comparison study" loading="lazy"><span class="cap">Competitor Study</span></div>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+
+    <div class="client fi" style="margin-bottom:0">
+      <div class="client-head"><span class="idx">05</span><h3>Lucin</h3><span class="tag">Fashion — Positioning &amp; Planning</span></div>
+      <p class="client-desc">Market positioning built from competitor research: eight content pillars and a 30-day plan designed to stand out.</p>
+      <div class="rail-wrap">
+        <div class="rail-nav"><button class="rnav" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rnav" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail">
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1KNLYfEc48OwuQD4vneCrcyIHQORT2evV/view" target="_blank" rel="noopener"><img src="images/work-lucin-pillars.jpg" alt="Lucin — eight content pillars" loading="lazy"><span class="cap">Content Pillars</span></a>
+          <a class="rcard w-w" href="https://drive.google.com/file/d/1KNLYfEc48OwuQD4vneCrcyIHQORT2evV/view" target="_blank" rel="noopener"><img src="images/work-lucin-plan.jpg" alt="Lucin — proposed 30-day content plan" loading="lazy"><span class="cap">30-Day Plan</span></a>
+        </div>
+        <div class="rprog"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker">Proof, not promises</p>
+        <h2 class="sec condensed"><span class="b">Results</span><br>That Speak</h2>
+      </div>
+      <p class="sec-note">Real numbers from a managed client page — steady growth in reach, engagement and bookings, tracked and reported every month.</p>
+    </div>
+    <div class="organic fi">
+      <div class="big">No Paid Ads.<br><span>Real Results.</span></div>
+      <p>We don't push ad budgets. Strategy, content and consistency do the work — bringing our clients leads, bookings and growth organically, instead of spending on advertising.</p>
+    </div>
+    <div class="stats-row stg">
+      <div class="stat"><div class="n"><span class="cnt" data-n="51999">0</span></div><div class="l">Views in 30 days<br>+69.3% vs. previous</div></div>
+      <div class="stat"><div class="n"><span class="u">+</span><span class="cnt" data-n="184">0</span></div><div class="l">Net followers<br>in 30 days</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-n="127661">0</span></div><div class="l">Views in 90 days<br>+16.2% followers</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-n="0">0</span> <span class="u">EGP</span></div><div class="l">Spent on ads<br>all organic</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head fi">
+      <div>
+        <p class="kicker">Client words</p>
+        <h2 class="sec condensed"><span class="b">Testi</span>monials</h2>
+      </div>
+      <p class="sec-note">What our clients tell us — shared anonymously, exactly as it was said.</p>
+    </div>
+    <div class="testi-grid stg">
+      <div class="testi"><span class="qm">"</span><p class="q">I'm very happy with the collaboration. The look of the page made a huge difference — and I reached real bookings and real results without paying for a single ad.</p><p class="who">Plastic Surgery Client — Monthly Management</p></div>
+      <div class="testi"><span class="qm">"</span><p class="q">The work with them was very good. The team worked hard with me on shoot day and did everything I wanted.</p><p class="who">Architecture Founder — Personal Brand</p></div>
+      <div class="testi"><span class="qm">"</span><p class="q">I keep telling them how happy I am. They always bring different ideas that I love and actually benefit from — I could never express things the right way myself. They truly made a difference to my page and my reach.</p><p class="who">Interior Design Client — Strategy &amp; Content</p></div>
+      <div class="testi"><span class="qm">"</span><p class="q">Thoughtful concepts, real care for the details, and content that finally feels like us.</p><p class="who">Florist Client — Concepts &amp; Storytelling</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact on-dark" id="contact">
+  <div class="wrap fi">
+    <p class="kicker on-dark" style="justify-content:center">Your brand next</p>
+    <h2 class="condensed">Let's Build<br><span class="b">Your Brand</span></h2>
+    <span class="spaced">One partner. All solutions.</span>
+    <div class="contact-cta">
+      <a class="btn btn-navy" href="https://wa.me/201091128261" target="_blank" rel="noopener">WhatsApp Us</a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/lumexeda" target="_blank" rel="noopener">Follow @lumexeda</a>
+    </div>
+    <div class="contact-lines">
+      <a class="cline" href="https://wa.me/201091128261" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/></svg>+20 109 112 8261</a>
+      <a class="cline" href="https://www.instagram.com/lumexeda" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><path d="M17.5 6.5h.01"/></svg>Instagram</a>
+      <a class="cline" href="https://www.facebook.com/share/1PmubSH96R/?mibextid=wwXIfr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>Facebook</a>
+      <a class="cline" href="https://www.tiktok.com/@lumexeda1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>TikTok</a>
+      <a class="cline" href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Studio Location</a>
+      <a class="cline" href="mailto:lumexeda@gmail.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>lumexeda@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <img src="images/logo-lx.png" alt="Lumexeda LX logo">
+    <div class="fl">
+      <a href="#reels">Reels</a>
+      <a href="#about">About</a>
+      <a href="#websites">Websites</a>
+      <a href="#studio">Studio</a>
+      <a href="#work">Work</a>
+    </div>
+    <div class="fs">
+      <a href="https://www.instagram.com/lumexeda" target="_blank" rel="noopener" aria-label="Lumexeda on Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><path d="M17.5 6.5h.01"/></svg></a>
+      <a href="https://www.facebook.com/share/1PmubSH96R/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Lumexeda on Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="https://www.tiktok.com/@lumexeda1" target="_blank" rel="noopener" aria-label="Lumexeda on TikTok"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
+      <a href="https://wa.me/201091128261" target="_blank" rel="noopener" aria-label="Lumexeda on WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/></svg></a>
+      <a href="https://maps.app.goo.gl/dqaSqiDkCaVaj1jt9" target="_blank" rel="noopener" aria-label="Lumexeda studio location"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
+      <a href="mailto:lumexeda@gmail.com" aria-label="Email Lumexeda"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a>
+    </div>
+    <small>© 2026 Lumexeda Studio &amp; Media</small>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/201091128261" target="_blank" rel="noopener" aria-label="Chat with Lumexeda on WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-4.6A8.4 8.4 0 1121 11.5z"/></svg></a>
+
+<script>
+var b=document.getElementById('burger'),m=document.getElementById('mmenu');
+b.addEventListener('click',function(){m.classList.toggle('open')});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open')})});
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.fi,.stg').forEach(function(el){io.observe(el)});
+}else{document.querySelectorAll('.fi,.stg').forEach(function(el){el.classList.add('vis')})}
+/* rails */
+document.querySelectorAll('.rail-wrap').forEach(function(w){
+  var rail=w.querySelector('.rail'),prog=w.querySelector('.rprog i');
+  w.querySelectorAll('.rnav').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      rail.scrollBy({left:(+btn.dataset.dir)*rail.clientWidth*.75,behavior:'smooth'});
+    });
+  });
+  function upd(){
+    var max=rail.scrollWidth-rail.clientWidth;
+    var p=max>0?rail.scrollLeft/max:0;
+    if(prog)prog.style.width=(12+p*88)+'%';
+  }
+  rail.addEventListener('scroll',upd,{passive:true});upd();
+});
+/* counters */
+function fmt(n){return n.toLocaleString('en-US')}
+if('IntersectionObserver' in window){
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;cio.unobserve(e.target);
+    var el=e.target,target=+el.dataset.n,dur=1400,t0=null;
+    if(target===0){el.textContent='0';return}
+    function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/dur,1);var ease=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.round(target*ease));if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  })},{threshold:.4});
+  document.querySelectorAll('.cnt').forEach(function(el){cio.observe(el)});
+}else{document.querySelectorAll('.cnt').forEach(function(el){el.textContent=fmt(+el.dataset.n)})}
+</script>
+<script>
+(function(){
+ var v=document.getElementById('hero-video'),box=v.parentElement,mq=matchMedia('(prefers-reduced-motion: reduce)');
+ function sync(){if(mq.matches){v.pause();box.classList.remove('is-playing')}else{v.muted=true;v.play().catch(function(){box.classList.remove('is-playing')})}}
+ v.addEventListener('playing',function(){if(!mq.matches)box.classList.add('is-playing')});
+ v.addEventListener('error',function(){box.classList.remove('is-playing')});
+ mq.addEventListener('change',sync);sync();
+})();
+</script>
+
+<script>
+(function(){
+var box=document.querySelector('.location-showcase'),ring=box.querySelector('.location-ring'),cards=Array.from(box.querySelectorAll('.location-card')),index=0,paused=false,visible=false,hover=false,focused=false,timer,mq=matchMedia('(prefers-reduced-motion: reduce)'),pause=box.querySelector('.location-pause');
+function render(){var n=((index%cards.length)+cards.length)%cards.length;ring.style.transform='translateZ(calc(var(--radius)*-1)) rotateY('+(-index*60)+'deg)';cards.forEach(function(c,i){c.classList.toggle('is-active',i===n)});box.querySelector('.location-count').textContent=String(n+1).padStart(2,'0')+' / 06';box.querySelector('.location-title').textContent=cards[n].dataset.title;}
+function start(){clearInterval(timer);if(visible&&!paused&&!hover&&!focused&&!mq.matches&&!document.hidden)timer=setInterval(function(){index++;render()},2000)}
+function step(n){index+=n;render();start()}
+box.querySelector('.location-prev').onclick=function(){step(-1)};box.querySelector('.location-next').onclick=function(){step(1)};
+pause.onclick=function(){paused=!paused;if(!paused){focused=false;hover=false}pause.textContent=paused?'▶':'Ⅱ';pause.setAttribute('aria-label',paused?'Play studio carousel':'Pause studio carousel');start()};
+box.addEventListener('mouseenter',function(){if(matchMedia('(hover:hover)').matches){hover=true;start()}});box.addEventListener('mouseleave',function(){hover=false;start()});box.addEventListener('focusin',function(){focused=true;start()});box.addEventListener('focusout',function(e){if(!box.contains(e.relatedTarget)){focused=false;start()}});
+var x=0;box.querySelector('.location-stage').addEventListener('touchstart',function(e){x=e.changedTouches[0].clientX},{passive:true});box.querySelector('.location-stage').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>35)step(dx<0?1:-1)},{passive:true});
+new IntersectionObserver(function(es){visible=es[0].isIntersecting;start()},{threshold:.25}).observe(box);document.addEventListener('visibilitychange',start);mq.addEventListener('change',start);render();
+})();
+</script>
+</body>
+</html>
